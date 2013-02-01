@@ -47,5 +47,13 @@ public class Song {
 	public void playSong() {
 
 	}
+	
+	/**
+	 * returns if it is possible to play this song
+	 * @return true -- the song has been played <=2 times
+	 */
+	public boolean canPlaySong(){
+		return (numPlays<=2);
+	}
 
 }
