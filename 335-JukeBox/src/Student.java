@@ -22,15 +22,18 @@ public class Student {
 
 	}
 
-	public void chooseSong(Song nameOfSong){
-		
+	public void chooseSong(Song nameOfSong) {
+
 		songChosenLength = nameOfSong.getLength();
 		this.subtractTime(songChosenLength);
-		if(st)
 
-			
-			
+		if (this.studentCanPlay() == true) {
+
+			playsForTheDay++;
+
 		}
+
+	}
 
 	public int getAvailableMinutes() {
 
@@ -38,32 +41,29 @@ public class Student {
 
 	}
 
-	public void calculateCurrentTimeRemaining() {
-
-//		int temp = this.getAvailableMinutes();
-
-	}
+//	public void calculateCurrentTimeRemaining() {
+//
+//		// int temp = this.getAvailableMinutes();
+//
+//	}
 
 	public void subtractTime(int songLength) {
-		
+
 		currentTimeRemaining = currentTimeRemaining - songLength;
-		
-		
-		
 
 	}
-	
-	public boolean studentCanPlay(){
-		
-		if (playsForTheDay > 2){
-			return false;
-			
+
+	public boolean studentCanPlay() {
+
+		if (playsForTheDay > 2 && this.getAvailableMinutes() < 0) {
+			canPlay = false;
+			return canPlay;
+
+		} else {
+			canPlay = true;
+			return canPlay;
 		}
-		else{
-			return true;
-		}
-		
-		
+
 	}
 
 }
