@@ -13,7 +13,12 @@ public class Student {
 	private int playsForTheDay = 0;
 	private Calendar cal1 = new GregorianCalendar();
 	private boolean canPlay;
-
+/**
+ * 
+ * 
+ * @param name
+ * @param identification
+ */
 	public Student(String name, int identification) {
 
 		studentName = name;
@@ -21,6 +26,10 @@ public class Student {
 		currentTimeRemaining = startingTime;
 
 	}
+	/**
+	 * get information from 
+	 * @param nameOfSong
+	 */
 
 	public void chooseSong(Song nameOfSong) {
 
