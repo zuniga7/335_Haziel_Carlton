@@ -8,6 +8,7 @@ public class Student {
 	private String studentName = "";
 	private int IDNumber;
 	private StudentList theStudents = new StudentList();
+	private SongCollection songCollection = new SongCollection();
 	
 	
 	public Student(String name, int identification) {
@@ -17,7 +18,9 @@ public class Student {
 		
 	}
 	
-	public void chooseSong(){
+	public void chooseSong(Song nameOfSong){
+		
+		for (int i = 0; i <)
 		
 		
 		
