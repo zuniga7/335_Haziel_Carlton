@@ -6,12 +6,12 @@ import java.util.GregorianCalendar;
 public class Student {
 
 	private int songChosenLength;
-	private int currentTimeRemaining = 1500 * 60;
+	private int currentTimeRemaining;
 	private String studentName = "";
 	private StudentList<String, Integer> theStudents = new StudentList<String, Integer>();
-	private int playsForTheDay = 0;
+	private int playsForTheDay;
 	private Calendar originalDay;
-
+	private Song nameOfSong;
 
 	/**
 	 * Set the students starting time
@@ -24,6 +24,8 @@ public class Student {
 		if (theStudents.wasLoginSuccessful(name, identification)) {
 
 			studentName = name;
+			currentTimeRemaining = 1500 * 60;
+			playsForTheDay = 0;
 		}
 
 	}
@@ -36,6 +38,15 @@ public class Student {
 	public String getName() {
 		return studentName;
 	}
+	
+	/**
+	 * Get the song object
+	 * @param nameOfSong
+	 */
+	
+	public void getSong(Song nameOfSong){
+		this.nameOfSong = nameOfSong;
+	}
 
 	/**
 	 * get the length of the song
@@ -43,23 +54,24 @@ public class Student {
 	 * @param nameOfSong
 	 */
 
-	public int getSongLength(Song nameOfSong) {
-
+	public void getSongLength(Song nameOfSong) {
+		
+		
 		songChosenLength = nameOfSong.getLength();
-		return songChosenLength;
+
 
 	}
+
 	/**
 	 * Increments plays for the day
 	 */
-	
+
 	public void songWasPlayed() {
 		if (studentCanPlay()) {
 			playsForTheDay++;
 		}
+		
 	}
-
-	
 
 	/**
 	 * Get the current time remaining for the current user
@@ -80,9 +92,14 @@ public class Student {
 	 * @param songLength
 	 */
 
-	public void subtractTime(int songLength) {
+	public void subtractTime() {
 
-		currentTimeRemaining = currentTimeRemaining - songLength;
+		if (currentTimeRemaining - songChosenLength < 0) {
+			;
+		} else {
+
+			currentTimeRemaining = currentTimeRemaining - songChosenLength;
+		}
 
 	}
 
@@ -93,6 +110,11 @@ public class Student {
 	 */
 
 	public boolean studentCanPlay() {
+		
+		if(currentTimeRemaining - nameOfSong.getLength() < 0){
+			return false;
+		}
+		
 
 		GregorianCalendar today = new GregorianCalendar();
 
@@ -102,7 +124,7 @@ public class Student {
 		return (playsForTheDay < 5);
 
 	}
-	
+
 	private boolean isSameDay(GregorianCalendar today) {
 
 		// two days are the same
@@ -117,21 +139,5 @@ public class Student {
 			return false;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

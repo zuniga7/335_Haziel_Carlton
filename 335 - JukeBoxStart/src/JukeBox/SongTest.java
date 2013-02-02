@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.HashMap;
+
 import org.junit.Test;
 
 import demoSongPlayer.Play1SongNoListener;
@@ -155,4 +157,5 @@ public class SongTest {
 		Play1SongNoListener play = new Play1SongNoListener();
 		play.run();
 	}
+	
 }
