@@ -7,15 +7,19 @@ public class Song {
 	private String songName;
 	private int numPlays = 0;
 	private int songLength;
+	private String fileLocation;
 
 	private Calendar originalDay;
 
 	/**
 	 * constructor for a song object
+	 * 
+	 * @param directory
 	 */
-	public Song(String name, int length) {
+	public Song(String name, String directory, int length) {
 		songName = name;
 		songLength = length; // length of song is in seconds
+		fileLocation = "./songfiles/" + directory;
 
 		originalDay = new GregorianCalendar(); // new calendar
 
@@ -57,13 +61,20 @@ public class Song {
 	}
 
 	/**
-	 * does the necessary steps in order to play a song
+	 * returns the directory containing the song file
+	 * 
+	 * @return String fileLocation
+	 */
+	public String getSongDirectory() {
+		return fileLocation;
+	}
+
+	/**
+	 * simulates playing the song by adding one to the number of plays
 	 */
 	public void playSong() {
 		if (canPlaySong()) {
 			numPlays++;
-
-			// set up to play
 		}
 
 	}
@@ -110,16 +121,15 @@ public class Song {
 	 */
 	public void pretendItsTomorrow() {
 		System.out.println(GregorianCalendar.DAY_OF_MONTH);
-		
-		Calendar tomorrow = new GregorianCalendar(Calendar.YEAR, Calendar.MONTH,
-				Calendar.DATE + 1);
-		
+
+		Calendar tomorrow = new GregorianCalendar(Calendar.YEAR,
+				Calendar.MONTH, Calendar.DATE + 1);
+
 		originalDay.clear();
-		
+
 		System.out.println(originalDay.YEAR);
 		originalDay.roll(GregorianCalendar.DAY_OF_MONTH, 1); // tomorrow
-		
-		
+
 		System.out.println(tomorrow.DAY_OF_MONTH);
 		System.out.println(originalDay.DAY_OF_MONTH);
 
