@@ -111,8 +111,8 @@ public class Song {
 	public void pretendItsTomorrow() {
 		System.out.println(GregorianCalendar.DAY_OF_MONTH);
 		
-		GregorianCalendar tomorrow = new GregorianCalendar(GregorianCalendar.YEAR, GregorianCalendar.MONTH,
-				GregorianCalendar.DATE + 1);
+		Calendar tomorrow = new GregorianCalendar(Calendar.YEAR, Calendar.MONTH,
+				Calendar.DATE + 1);
 		
 		originalDay.clear();
 		
