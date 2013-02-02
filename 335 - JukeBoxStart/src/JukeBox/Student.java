@@ -1,49 +1,71 @@
 package JukeBox;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Student {
 
-	private int startingTime = 1500 * 60;
 	private int songChosenLength;
-	private int currentTimeRemaining;
+	private int currentTimeRemaining = 1500 * 60;
 	private String studentName = "";
-	private int IDNumber;
-	private StudentList theStudents = new StudentList();
-	private SongCollection songCollection = new SongCollection();
+	private StudentList<String, Integer> theStudents = new StudentList<String, Integer>();
 	private int playsForTheDay = 0;
-	private Calendar cal1 = new GregorianCalendar();
-	private boolean canPlay;
-/**
- * 
- * 
- * @param name
- * @param identification
- */
+	private Calendar originalDay;
+
+
+	/**
+	 * Set the students starting time
+	 * 
+	 * @param name
+	 * @param identification
+	 */
 	public Student(String name, int identification) {
 
-		studentName = name;
-		IDNumber = identification;
-		currentTimeRemaining = startingTime;
+		if (theStudents.wasLoginSuccessful(name, identification)) {
 
-	}
-	/**
-	 * get information from 
-	 * @param nameOfSong
-	 */
-
-	public void chooseSong(Song nameOfSong) {
-
-		songChosenLength = nameOfSong.getLength();
-		this.subtractTime(songChosenLength);
-
-		if (this.studentCanPlay() == true) {
-
-			playsForTheDay++;
-
+			studentName = name;
 		}
 
 	}
+
+	/**
+	 * Returns the student's name
+	 * 
+	 * @return
+	 */
+	public String getName() {
+		return studentName;
+	}
+
+	/**
+	 * get the length of the song
+	 * 
+	 * @param nameOfSong
+	 */
+
+	public int getSongLength(Song nameOfSong) {
+
+		songChosenLength = nameOfSong.getLength();
+		return songChosenLength;
+
+	}
+	/**
+	 * Increments plays for the day
+	 */
+	
+	public void songWasPlayed() {
+		if (studentCanPlay()) {
+			playsForTheDay++;
+		}
+	}
+
+	
+
+	/**
+	 * Get the current time remaining for the current user
+	 * 
+	 * @return
+	 */
 
 	public int getAvailableMinutes() {
 
@@ -51,11 +73,12 @@ public class Student {
 
 	}
 
-//	public void calculateCurrentTimeRemaining() {
-//
-//		// int temp = this.getAvailableMinutes();
-//
-//	}
+	/**
+	 * Subtract the chosen song length from the running total of the current
+	 * time remaining
+	 * 
+	 * @param songLength
+	 */
 
 	public void subtractTime(int songLength) {
 
@@ -63,17 +86,52 @@ public class Student {
 
 	}
 
+	/**
+	 * Return whether or not this student is eligible to play songs
+	 * 
+	 * @return
+	 */
+
 	public boolean studentCanPlay() {
 
-		if (playsForTheDay > 2 || this.getAvailableMinutes() < 0) {
-			canPlay = false;
-			return canPlay;
+		GregorianCalendar today = new GregorianCalendar();
 
-		} else {
-			canPlay = true;
-			return canPlay;
-		}
+		isSameDay(today);
+
+		// count from 0 to 4
+		return (playsForTheDay < 5);
 
 	}
+	
+	private boolean isSameDay(GregorianCalendar today) {
+
+		// two days are the same
+		if (originalDay.YEAR == today.YEAR && originalDay.MONTH == today.MONTH
+				&& originalDay.DATE == today.DATE)
+			return true;
+
+		// it is a brand new day!
+		else {
+			originalDay = today;
+			playsForTheDay = 0;
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

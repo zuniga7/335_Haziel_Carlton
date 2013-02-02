@@ -27,7 +27,7 @@ public class StudentList<K, V> {
 	 * @return boolean of whether the user exists
 	 */
 
-	public boolean canUserLogIn(String name, int password) {
+	public boolean wasLoginSuccessful(String name, int password) {
 		
 		return password == students.get(name);
 		
