@@ -65,7 +65,7 @@ public class Student {
 
 	public boolean studentCanPlay() {
 
-		if (playsForTheDay > 2 && this.getAvailableMinutes() < 0) {
+		if (playsForTheDay > 2 || this.getAvailableMinutes() < 0) {
 			canPlay = false;
 			return canPlay;
 

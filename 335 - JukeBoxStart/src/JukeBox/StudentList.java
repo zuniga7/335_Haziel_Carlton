@@ -1,5 +1,26 @@
 package JukeBox;
+
+import java.util.HashMap;
+
 //hardcore those into the collection
-public class StudentList {
+public class StudentList<K, V> {
+	
+	
+	private HashMap<String,Integer> students = new HashMap<String, Integer>();
+	
+	public StudentList() {
+		
+		
+		students.put("Ali", 1111);
+		students.put("Chris", 2222);
+		students.put("River", 3333);
+		students.put("Ryan", 4444);
+		
+		
+		
+		
+		
+		
+	}
 
 }
