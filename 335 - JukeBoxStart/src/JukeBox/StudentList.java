@@ -28,13 +28,9 @@ public class StudentList<K, V> {
 	 */
 
 	public boolean canUserLogIn(String name, int password) {
-
-		if (students.get(name) == password) {
-			return true;
-		} else {
-			return false;
-		}
-
+		
+		return password == students.get(name);
+		
 	}
 
 }
