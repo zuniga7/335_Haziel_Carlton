@@ -109,16 +109,19 @@ public class Song {
 	 * pretends its tomorrow -- NOT WORKING BUT IDK WHY!!!!
 	 */
 	public void pretendItsTomorrow() {
-		System.out.println(originalDay.DAY_OF_MONTH);
+		System.out.println(GregorianCalendar.DAY_OF_MONTH);
 		
-		GregorianCalendar tomorrow = new GregorianCalendar(originalDay.YEAR, originalDay.MONTH,
-				originalDay.DATE + 1);
+		GregorianCalendar tomorrow = new GregorianCalendar(GregorianCalendar.YEAR, GregorianCalendar.MONTH,
+				GregorianCalendar.DATE + 1);
 		
-		originalDay.set(originalDay.YEAR, originalDay.MONTH,
-				originalDay.DATE + 1); // tomorrow
+		originalDay.clear();
+		
+		System.out.println(originalDay.YEAR);
+		originalDay.roll(GregorianCalendar.DAY_OF_MONTH, 1); // tomorrow
 		
 		
 		System.out.println(tomorrow.DAY_OF_MONTH);
+		System.out.println(originalDay.DAY_OF_MONTH);
 
 	}
 
