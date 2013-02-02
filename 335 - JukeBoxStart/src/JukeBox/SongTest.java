@@ -155,7 +155,7 @@ public class SongTest {
 	@Test
 	public void test() {
 		Play1SongNoListener play = new Play1SongNoListener();
-		play.run();
+//		play.run();
 	}
 	
 }
