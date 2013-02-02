@@ -47,6 +47,11 @@ public class Song {
 	 * @return numPlays
 	 */
 	public int getNumPlays() {
+
+		GregorianCalendar today = new GregorianCalendar();
+
+		isSameDay(today);
+
 		return numPlays;
 
 	}
@@ -75,7 +80,8 @@ public class Song {
 
 		isSameDay(today);
 
-		return (numPlays <= 5);
+		// count from 0 to 4
+		return (numPlays < 5);
 	}
 
 	/**
@@ -97,6 +103,23 @@ public class Song {
 			numPlays = 0;
 			return false;
 		}
+	}
+
+	/**
+	 * pretends its tomorrow -- NOT WORKING BUT IDK WHY!!!!
+	 */
+	public void pretendItsTomorrow() {
+		System.out.println(originalDay.DAY_OF_MONTH);
+		
+		GregorianCalendar tomorrow = new GregorianCalendar(originalDay.YEAR, originalDay.MONTH,
+				originalDay.DATE + 1);
+		
+		originalDay.set(originalDay.YEAR, originalDay.MONTH,
+				originalDay.DATE + 1); // tomorrow
+		
+		
+		System.out.println(tomorrow.DAY_OF_MONTH);
+
 	}
 
 }
