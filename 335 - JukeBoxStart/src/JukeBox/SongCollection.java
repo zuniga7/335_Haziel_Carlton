@@ -13,6 +13,24 @@ public class SongCollection {
 	public SongCollection() {
 		songList = new ArrayList<Song>();
 		playList = new LinkedList<Song>();
+				
+		// add songs
+		Song song1 = new Song("BlueRidgeMountain.mp3", 1);
+		Song song2 = new Song("DeterminedTumbao.mp3", 1);
+		Song song3 = new Song("flute.mp3", 1);
+		Song song4 = new Song("spacemusic.mp3", 1);
+		Song song5 = new Song("SwingCheese.mp3", 1);
+		Song song6 = new Song("tada.mp3", 1);
+		Song song7 = new Song("UntameableFire.mp3", 1);
+		
+		songList.add(song1);
+		songList.add(song2);
+		songList.add(song3);
+		songList.add(song4);
+		songList.add(song5);
+		songList.add(song6);
+		songList.add(song7);
+		
 	}
 
 	/**
