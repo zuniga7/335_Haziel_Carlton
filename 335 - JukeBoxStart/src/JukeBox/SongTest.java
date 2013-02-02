@@ -4,10 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import org.junit.Test;
+
+import demoSongPlayer.Play1SongNoListener;
 
 public class SongTest {
 
@@ -149,5 +148,11 @@ public class SongTest {
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
 
+	}
+	
+	@Test
+	public void test() {
+		Play1SongNoListener play = new Play1SongNoListener();
+		play.run();
 	}
 }
