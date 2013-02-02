@@ -1,4 +1,5 @@
 package JukeBox;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,7 +14,7 @@ public class SongCollection {
 	public SongCollection() {
 		songList = new ArrayList<Song>();
 		playList = new LinkedList<Song>();
-				
+
 		// add songs
 		Song song1 = new Song("BlueRidgeMountain.mp3", 38);
 		Song song2 = new Song("DeterminedTumbao.mp3", 20);
@@ -22,7 +23,7 @@ public class SongCollection {
 		Song song5 = new Song("SwingCheese.mp3", 15);
 		Song song6 = new Song("tada.mp3", 2);
 		Song song7 = new Song("UntameableFire.mp3", 283);
-		
+
 		songList.add(song1);
 		songList.add(song2);
 		songList.add(song3);
@@ -30,7 +31,25 @@ public class SongCollection {
 		songList.add(song5);
 		songList.add(song6);
 		songList.add(song7);
-		
+
+	}
+
+	/**
+	 * gets the ArrayList containing the whole collection of songs
+	 * 
+	 * @return ArrayList songList
+	 */
+	public ArrayList<Song> getCollectionList() {
+		return songList;
+	}
+
+	/**
+	 * gets the Queue containing the whole playList of songs
+	 * 
+	 * @return Queue playList
+	 */
+	public Queue<Song> getPlayList() {
+		return playList;
 	}
 
 	/**
@@ -43,16 +62,22 @@ public class SongCollection {
 	/**
 	 * adds a song object into the playlist queue (Queue playList)
 	 */
-	public void addToPlayList(Song selectedSong) {
-		playList.add(selectedSong);
+	public void addToPlayList(int index) {
+		Song selectedSong = songList.get(index);
+
+		if (selectedSong.canPlaySong()){
+			playList.add(selectedSong);
+			selectedSong.playSong();
+		}
 	}
-	
+
 	/**
-	 *  remove the Song at the head of the playList
+	 * remove the Song at the head of the playList
 	 */
-	public void removeTopSong(){
+	public void removeTopSong() {
 		playList.poll();
 	}
-	
+
+	// reset all numPlays for a new day??
 
 }

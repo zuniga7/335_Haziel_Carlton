@@ -17,6 +17,7 @@ public class JukeBoxGUI extends JFrame {
 	private JButton playSongButton = new JButton("Play Song");
 	private JTextArea songList = new JTextArea(25, 32);
 	private JTextArea queueList = new JTextArea(25, 32);
+	private JLabel welcome = new JLabel("Welcome");
 
 	private JTextField userNameField = new JTextField(10);
 	private JPasswordField passField = new JPasswordField(10);
