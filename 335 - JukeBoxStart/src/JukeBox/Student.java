@@ -26,6 +26,7 @@ public class Student {
 			studentName = name;
 			currentTimeRemaining = 1500 * 60;
 			playsForTheDay = 0;
+			originalDay = new GregorianCalendar();
 		}
 
 	}
@@ -44,23 +45,11 @@ public class Student {
 	 * @param nameOfSong
 	 */
 	
-	public void getSong(Song nameOfSong){
+	public void setSong(Song nameOfSong){
 		this.nameOfSong = nameOfSong;
 	}
 
-	/**
-	 * get the length of the song
-	 * 
-	 * @param nameOfSong
-	 */
 
-	public void getSongLength(Song nameOfSong) {
-		
-		
-		songChosenLength = nameOfSong.getLength();
-
-
-	}
 
 	/**
 	 * Increments plays for the day
@@ -98,7 +87,7 @@ public class Student {
 			;
 		} else {
 
-			currentTimeRemaining = currentTimeRemaining - songChosenLength;
+			currentTimeRemaining = currentTimeRemaining - nameOfSong.getLength();
 		}
 
 	}

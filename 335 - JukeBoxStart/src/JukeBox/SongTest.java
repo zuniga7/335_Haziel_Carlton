@@ -15,8 +15,8 @@ public class SongTest {
 	@Test
 	public void testGeneralSongs() {
 		// add songs
-		Song song1 = new Song("tada","tada.mp3", 2);
-		Song song2 = new Song("flute","flute.mp3", 6);
+		Song song1 = new Song("tada", "tada.mp3", 2);
+		Song song2 = new Song("flute", "flute.mp3", 6);
 
 		// names
 		assertEquals(song1.getName(), "tada");
@@ -41,7 +41,7 @@ public class SongTest {
 
 	@Test
 	public void testAddDaysToSongs() {
-		Song song1 = new Song("tada","tada.mp3", 2);
+		Song song1 = new Song("tada", "tada.mp3", 2);
 		assertEquals(song1.getNumPlays(), 0);
 		assertTrue(song1.canPlaySong());
 
@@ -97,65 +97,65 @@ public class SongTest {
 		sc.addToPlayList(0);
 		System.out.println(sc.getPlayList());
 		sc.playSongAtTopOfPlayList();
-		
+
 		// add 1st song 2
 		sc.addToPlayList(0);
 		System.out.println(sc.getPlayList());
-		
+
 		// add 1st song 3
 		sc.addToPlayList(0);
 		System.out.println(sc.getPlayList());
-		
+
 		// add 1st song 4
 		sc.addToPlayList(0);
 		System.out.println(sc.getPlayList());
-		
+
 		// add 1st song 5
 		sc.addToPlayList(0);
 		System.out.println(sc.getPlayList());
-		
+
 		// add 1st song 6? -- nope
 		sc.addToPlayList(0);
 		System.out.println(sc.getPlayList());
-		
+
 		// add 2nd song 1
 		sc.addToPlayList(1);
 		System.out.println(sc.getPlayList());
-		
+
 		// remove top song1
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
-		
+
 		// remove top song2
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
-		
+
 		// remove top song3
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
-		
+
 		// remove top song4
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
-		
+
 		// remove top song5
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
-		
+
 		// remove top song6
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
-		
+
 		// remove top song7? -- with nothing in playList
 		sc.removeTopSong();
 		System.out.println(sc.getPlayList());
 
 	}
-	
+
 	@Test
 	public void test() {
 		Play1SongNoListener play = new Play1SongNoListener();
-//		play.run();
+		play.run();
 	}
-	
+
 }

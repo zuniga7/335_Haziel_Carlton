@@ -3,9 +3,9 @@ package JukeBox;
 import java.util.HashMap;
 
 //hardcore those into the collection
-public class StudentList<K, V> {
+public class StudentList<K, V> extends HashMap<String, Integer> {
 
-	private HashMap<String, Integer> students = new HashMap<String, Integer>();
+	private HashMap<String, Integer> students = new HashMap<String,Integer>();
 
 	/**
 	 * Hashmap of current users and their passwords.
@@ -28,9 +28,9 @@ public class StudentList<K, V> {
 	 */
 
 	public boolean wasLoginSuccessful(String name, int password) {
-		
+
 		return password == students.get(name);
-		
+
 	}
 
 }
