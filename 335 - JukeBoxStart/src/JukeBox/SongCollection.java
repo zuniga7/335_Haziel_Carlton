@@ -19,7 +19,6 @@ import songplayer.SongPlayer;
 public class SongCollection {
 
 	private ArrayList<Song> songList;
-
 	private Queue<Song> playList;
 
 	/**
@@ -28,41 +27,25 @@ public class SongCollection {
 	 */
 
 	public SongCollection() {
-
 		songList = new ArrayList<Song>();
-
 		playList = new LinkedList<Song>();
 
 		// add songs
-
 		Song song1 = new Song("BlueRidgeMountainMist",
-
-		"BlueRidgeMountainMist.mp3", 38);
-
+				"BlueRidgeMountainMist.mp3", 38);
 		Song song2 = new Song("DeterminedTumbao", "DeterminedTumbao.mp3", 20);
-
 		Song song3 = new Song("flute", "flute.aif", 6);
-
 		Song song4 = new Song("spacemusic", "spacemusic.au", 1);
-
 		Song song5 = new Song("SwingCheese", "SwingCheese.mp3", 15);
-
 		Song song6 = new Song("tada", "tada.wav", 2);
-
 		Song song7 = new Song("UntameableFire", "UntameableFire.mp3", 283);
 
 		songList.add(song1);
-
 		songList.add(song2);
-
 		songList.add(song3);
-
 		songList.add(song4);
-
 		songList.add(song5);
-
 		songList.add(song6);
-
 		songList.add(song7);
 
 	}
@@ -77,9 +60,7 @@ public class SongCollection {
 	 */
 
 	public ArrayList<Song> getCollectionList() {
-
 		return songList;
-
 	}
 
 	/**
@@ -92,9 +73,7 @@ public class SongCollection {
 	 */
 
 	public Queue<Song> getPlayList() {
-
 		return playList;
-
 	}
 
 	/**
@@ -103,9 +82,7 @@ public class SongCollection {
 	 */
 
 	public void addToSongList(Song newSong) {
-
 		songList.add(newSong);
-
 	}
 
 	/**
@@ -116,31 +93,21 @@ public class SongCollection {
 	 */
 
 	public void addToPlayList(int index) {
-
 		Song selectedSong = songList.get(index);
 
 		if (selectedSong.canPlaySong()) {
-
 			playList.add(selectedSong);
-
 			selectedSong.playSong();
-
 		}
-
 	}
 
 	public void playSongAtTopOfPlayList() {
-
 		SongPlayer.playFile("./songfiles/BlueRidgeMountainMist.mp3");
 
 		if (playList.peek() != null) {
-
 			ObjectWaitingForSongToEnd waiter = new ObjectWaitingForSongToEnd();
-
 			SongPlayer.playFile(waiter, playList.peek().getSongDirectory());
-
 		}
-
 	}
 
 	/**
@@ -149,7 +116,6 @@ public class SongCollection {
 	 */
 
 	public void removeTopSong() {
-
 		playList.poll();
 
 	}
@@ -159,28 +125,19 @@ public class SongCollection {
 	/**
 	 * 
 	 * An inner class that allows an instance of this to receive a
-	 * 
 	 * songFinishedPlaying when the audio file has been played. Note: static was
-	 * 
 	 * added here because it is called from main.
 	 */
 
 	private class ObjectWaitingForSongToEnd implements EndOfSongListener {
 
 		public void songFinishedPlaying(EndOfSongEvent eosEvent) {
-
 			System.out.print("Finished " + eosEvent.fileName());
-
 			GregorianCalendar finishedAt = eosEvent.finishedTime();
-
 			System.out.println(" at " + finishedAt.get(Calendar.HOUR_OF_DAY)
-
-			+ ":" + finishedAt.get(Calendar.MINUTE) + ":"
-
-			+ finishedAt.get(Calendar.SECOND));
-
+					+ ":" + finishedAt.get(Calendar.MINUTE) + ":"
+					+ finishedAt.get(Calendar.SECOND));
 		}
-
 	}
 
 }
