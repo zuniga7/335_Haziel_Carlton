@@ -3,6 +3,7 @@ package JukeBox;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +17,9 @@ public class JukeBoxGUI extends JFrame {
 	private JButton playSongButton = new JButton("Play Song");
 	private JTextArea songList = new JTextArea(25, 32);
 	private JTextArea queueList = new JTextArea(25, 32);
-	private JLabel welcome = new JLabel("Welcome");
+	private JLabel welcome = new JLabel("Welcome ");
+	private JButton loginButton = new JButton("Login");
+	private JButton logoutButton = new JButton("Logout");
 
 	private SongCollection songCollection = new SongCollection();
 	private StudentList studentList = new StudentList();
@@ -53,19 +56,72 @@ public class JukeBoxGUI extends JFrame {
 		PlayButtonListener play = new PlayButtonListener();
 		playSongButton.addActionListener(play);
 
+		LoginButtonListener login = new LoginButtonListener();
+		loginButton.addActionListener(login);
+
+		LogoutButtonListener logout = new LogoutButtonListener();
+		logoutButton.addActionListener(logout);
+
 	}
 
 	/**
 	 * 
 	 * listener for the playButton -- adds a song to the play list queue
 	 */
-
 	private class PlayButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
 
 			playAllPlayList playingPlayList = new playAllPlayList();
 			new Thread(playingPlayList).start();
+
+		}
+
+	}
+
+	/**
+	 * 
+	 * listener for the loginButton -- attempts to login a user
+	 */
+	private class LoginButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String name = userNameField.getText();
+			String pass = getPassword(passField.getPassword());
+			if (studentList.wasLoginSuccessful(name, pass)) {
+				System.out.println("yes!");
+			} else{
+				System.out.println("no!");
+			}
+		}
+
+		/**
+		 * private helper method to convert the password in the password field
+		 * (which is in char[]) into a String
+		 * 
+		 * @param password
+		 * @return String pass -- the real password
+		 */
+		private String getPassword(char[] password) {
+			String pass = "";
+
+			for (int x = 0; x < password.length; x++)
+				pass += password[x];
+
+			return pass;
+		}
+	}
+
+	/**
+	 * 
+	 * listener for the logoutButton -- logs the user out
+	 */
+	private class LogoutButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
 
 		}
 
@@ -99,7 +155,10 @@ public class JukeBoxGUI extends JFrame {
 		panel2.add(userNameField);
 		panel2.add(passLabel);
 		panel2.add(passField);
+		panel2.add(loginButton);
+		panel2.add(logoutButton);
 		this.add(panel2, BorderLayout.NORTH);
+		logoutButton.setEnabled(false);
 
 	}
 

@@ -162,7 +162,7 @@ public class SongTest {
 	public void testStudentList() {
 
 		StudentList newList = new StudentList();
-		HashMap<String, Integer> valid = new HashMap<String, Integer>();
+		HashMap<String, String> valid = new HashMap<String, String>();
 
 		valid = newList.returnTheList();
 
@@ -171,8 +171,8 @@ public class SongTest {
 		assertTrue(valid.containsKey("River"));
 		assertTrue(valid.containsKey("Ryan"));
 		assertFalse(valid.containsKey("Jacob"));
-		int password = valid.get("Ali");
-		assertEquals(1111, valid.get("Ali"));
+		String password = valid.get("Ali");
+		assertEquals("1111", valid.get("Ali"));
 
 	}
 

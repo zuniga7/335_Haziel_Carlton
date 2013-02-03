@@ -19,7 +19,7 @@ public class Student {
 	 * @param name
 	 * @param identification
 	 */
-	public Student(String name, int identification) {
+	public Student(String name, String identification) {
 
 		if (theStudents.wasLoginSuccessful(name, identification)) {
 
