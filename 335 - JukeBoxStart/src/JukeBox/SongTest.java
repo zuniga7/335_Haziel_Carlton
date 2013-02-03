@@ -167,6 +167,12 @@ public class SongTest {
 		valid = newList.returnTheList();
 
 		assertTrue(valid.containsKey("Ali"));
+		assertTrue(valid.containsKey("Chris"));
+		assertTrue(valid.containsKey("River"));
+		assertTrue(valid.containsKey("Ryan"));
+		assertFalse(valid.containsKey("Jacob"));
+		int password = valid.get("Ali");
+		assertEquals(1111, valid.get("Ali"));
 
 	}
 
