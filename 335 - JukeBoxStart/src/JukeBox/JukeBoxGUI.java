@@ -94,7 +94,7 @@ public class JukeBoxGUI extends JFrame {
 				loginButton.setEnabled(false);
 				logoutButton.setEnabled(true);
 
-				//welcome.setText(("Welcome " + name + "! " + "Minutes Remaining: " +""+ "Number of Plays Today"));
+				//welcome.setText(("Welcome " + name + "! " + "Minutes Remaining: " +""+ "Number of Plays Today: " + (3-)));
 				welcome.setVisible(true);
 			}
 

@@ -162,7 +162,7 @@ public class SongTest {
 	public void testStudentList() {
 
 		StudentList newList = new StudentList();
-		HashMap<String, String> valid = new HashMap<String, String>();
+		HashMap<Student, String> valid = new HashMap<Student, String>();
 
 		valid = newList.returnTheList();
 

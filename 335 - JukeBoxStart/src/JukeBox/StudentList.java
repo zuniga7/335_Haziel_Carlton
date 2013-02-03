@@ -5,17 +5,17 @@ import java.util.HashMap;
 //hardcore those into the collection
 public class StudentList {
 
-	private HashMap<String, String> students = new HashMap<String, String>();
+	private HashMap<Student, String> students = new HashMap<Student, String>();
 
 	/**
 	 * Hashmap of current users and their passwords.
 	 */
 	public StudentList() {
 
-		students.put("Ali", "1111");
-		students.put("Chris", "2222");
-		students.put("River", "3333");
-		students.put("Ryan", "4444");
+		students.put(new Student("Ali", "1111"), "1111");
+		students.put(new Student("Chris", "2222"), "2222");
+		students.put(new Student("River", "3333"), "3333");
+		students.put(new Student("Ryan", "4444"), "4444");
 
 	}
 
@@ -26,16 +26,20 @@ public class StudentList {
 	 * @param password
 	 * @return boolean of whether the user exists
 	 */
-
 	public boolean wasLoginSuccessful(String name, String password) {
 
 		return password.equals(students.get(name));
 
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 
-	public HashMap<String, String> returnTheList() {
+	public HashMap<Student, String> returnTheList() {
 
-		HashMap<String, String> copyOfList = new HashMap<String, String>();
+		HashMap<Student, String> copyOfList = new HashMap<Student, String>();
 
 		copyOfList = students;
 
