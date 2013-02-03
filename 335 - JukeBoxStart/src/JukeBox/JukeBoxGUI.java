@@ -1,6 +1,7 @@
 package JukeBox;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -186,6 +187,7 @@ public class JukeBoxGUI extends JFrame {
 
 		// welcome label
 		welcome.setVisible(false);
+		welcome.setFont(new Font("Courier", Font.BOLD, 16));
 		JPanel panel3 = new JPanel();
 		panel3.add(welcome);
 		this.add(panel3, BorderLayout.SOUTH);

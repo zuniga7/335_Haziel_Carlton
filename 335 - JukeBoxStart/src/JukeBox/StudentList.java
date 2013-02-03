@@ -30,7 +30,7 @@ public class StudentList {
 		// THANK YOU!
 
 		students.put("Ali", student1);
-		students.put("Christ", student2);
+		students.put("Chris", student2);
 		students.put("River", student3);
 		students.put("Ryan", student4);
 
