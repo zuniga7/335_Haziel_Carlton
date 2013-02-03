@@ -12,12 +12,38 @@ public class StudentList {
 	 */
 	public StudentList() {
 
-		students.put(new Student("Ali", "1111"), "1111");
-		students.put(new Student("Chris", "2222"), "2222");
-		students.put(new Student("River", "3333"), "3333");
-		students.put(new Student("Ryan", "4444"), "4444");
+		Student student1 = new Student("Ali", "1111");
+		Student student2 = new Student("Chris", "2222");
+		Student student3 = new Student("River", "3333");
+		Student student4 = new Student("Ryan", "4444");
+
+		// please do this:
+		//
+		// WE NEED TO CHANGE THE VALUE OPTION TO STUDENT!!! AND THE KEY SHOULD
+		// BE THE NAME (STRING).... PLEASE SWITCH THEM AROUND
+		//
+		// change everything as necessary
+		// 
+		// after that.... implement the method below
+		//
+		// THANK YOU!
+		
+		students.put(student1, "1111");
+		students.put(student2, "2222");
+		students.put(student3, "3333");
+		students.put(student4, "4444");
 
 	}
+	
+	/**
+	 * implement this!
+	 */
+	public Student getStudent(String name){
+		
+	}
+	
+	
+	
 
 	/**
 	 * Determines whether the user exists and whether the password matches
@@ -31,7 +57,8 @@ public class StudentList {
 		return password.equals(students.get(name));
 
 	}
-	
+
+
 	/**
 	 * 
 	 * @return

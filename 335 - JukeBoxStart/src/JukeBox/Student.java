@@ -78,7 +78,7 @@ public class Student {
 	 * 
 	 * @return playsForTheDay
 	 */
-	public int playsForTheDay() {
+	public int getPlaysForTheDay() {
 		return playsForTheDay;
 	}
 

@@ -94,7 +94,12 @@ public class JukeBoxGUI extends JFrame {
 				loginButton.setEnabled(false);
 				logoutButton.setEnabled(true);
 
-				//welcome.setText(("Welcome " + name + "! " + "Minutes Remaining: " +""+ "Number of Plays Today: " + (3-)));
+				// Student loggedInStudent = StudentList.get(name);
+
+				// welcome.setText(("Welcome " + name + "! " +
+				// "Minutes Remaining: " +loggedInStudent.getAvailableMinutes()+
+				// "Number of Plays Today: " +
+				// (3-loggedInStudent.getPlaysForTheDay())));
 				welcome.setVisible(true);
 			}
 
@@ -159,7 +164,7 @@ public class JukeBoxGUI extends JFrame {
 		panel.add(playSongButton);
 		panel.add(queueList);
 		this.add(panel, BorderLayout.CENTER);
-		
+
 		// user/pass
 		JPanel panel2 = new JPanel();
 		panel2.add(userLabel);
@@ -170,7 +175,7 @@ public class JukeBoxGUI extends JFrame {
 		panel2.add(logoutButton);
 		this.add(panel2, BorderLayout.NORTH);
 		logoutButton.setEnabled(false);
-		
+
 		// welcome label
 		welcome.setVisible(false);
 		JPanel panel3 = new JPanel();
