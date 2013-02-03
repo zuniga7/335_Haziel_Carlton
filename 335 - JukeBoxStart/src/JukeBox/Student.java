@@ -8,10 +8,10 @@ public class Student {
 	private int songChosenLength;
 	private int currentTimeRemaining;
 	private String studentName = "";
-	private StudentList theStudents = new StudentList();
 	private int playsForTheDay;
 	private Calendar originalDay;
 	private Song nameOfSong;
+	private String ID;
 
 	/**
 	 * Set the students starting time
@@ -21,13 +21,11 @@ public class Student {
 	 */
 	public Student(String name, String identification) {
 
-		if (theStudents.wasLoginSuccessful(name, identification)) {
-
-			studentName = name;
-			currentTimeRemaining = 1500 * 60;
-			playsForTheDay = 0;
-			originalDay = new GregorianCalendar();
-		}
+		studentName = name;
+		ID = identification;
+		currentTimeRemaining = 1500 * 60;
+		playsForTheDay = 0;
+		originalDay = new GregorianCalendar();
 
 	}
 
@@ -38,6 +36,15 @@ public class Student {
 	 */
 	public String getName() {
 		return studentName;
+	}
+
+	/**
+	 * Returns the student's name
+	 * 
+	 * @return
+	 */
+	public String getID() {
+		return ID;
 	}
 
 	/**

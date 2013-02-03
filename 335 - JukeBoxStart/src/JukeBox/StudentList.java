@@ -54,7 +54,10 @@ public class StudentList {
 	 */
 	public boolean wasLoginSuccessful(String name, String password) {
 
-		return password.equals(students.get(name));
+		if (students.get(name) != null)
+			return password.equals(students.get(name).getID());
+		else
+			return false;
 
 	}
 

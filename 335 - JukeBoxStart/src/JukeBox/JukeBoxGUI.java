@@ -90,20 +90,23 @@ public class JukeBoxGUI extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			String name = userNameField.getText();
 			String pass = getPassword(passField.getPassword());
+
 			if (studentList.wasLoginSuccessful(name, pass)) {
 				loginButton.setEnabled(false);
 				logoutButton.setEnabled(true);
 
-				// Student loggedInStudent = StudentList.get(name);
+				Student loggedInStudent = studentList.getStudent(name);
 
-				// welcome.setText(("Welcome " + name + "! " +
-				// "Minutes Remaining: " +loggedInStudent.getAvailableMinutes()+
-				// "Number of Plays Today: " +
-				// (3-loggedInStudent.getPlaysForTheDay())));
+				welcome.setText(("Welcome " + name + "! - "
+						+ "Minutes Remaining: "
+						+ (loggedInStudent.getAvailableMinutes() / 60.0)
+						+ " - Number of Plays Today: " + (3 - loggedInStudent
+						.getPlaysForTheDay())));
 				welcome.setVisible(true);
 			}
 
 			else {
+				passField.setText("");
 				JOptionPane
 						.showMessageDialog(
 								loginButton,
@@ -137,7 +140,12 @@ public class JukeBoxGUI extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			welcome.setText("Thank you for using the JukeBox. Please come back again!");
+			userNameField.setText("");
+			passField.setText("");
+			
+			logoutButton.setEnabled(false);
+			loginButton.setEnabled(true);
 
 		}
 
