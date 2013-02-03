@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -90,9 +91,19 @@ public class JukeBoxGUI extends JFrame {
 			String name = userNameField.getText();
 			String pass = getPassword(passField.getPassword());
 			if (studentList.wasLoginSuccessful(name, pass)) {
-				System.out.println("yes!");
-			} else{
-				System.out.println("no!");
+				loginButton.setEnabled(false);
+				logoutButton.setEnabled(true);
+
+				//welcome.setText(("Welcome " + name + "! " + "Minutes Remaining: " +""+ "Number of Plays Today"));
+				welcome.setVisible(true);
+			}
+
+			else {
+				JOptionPane
+						.showMessageDialog(
+								loginButton,
+								"The username and password combination you enetered is incorrect",
+								"Incorrect Login", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
@@ -148,7 +159,7 @@ public class JukeBoxGUI extends JFrame {
 		panel.add(playSongButton);
 		panel.add(queueList);
 		this.add(panel, BorderLayout.CENTER);
-
+		
 		// user/pass
 		JPanel panel2 = new JPanel();
 		panel2.add(userLabel);
@@ -159,7 +170,12 @@ public class JukeBoxGUI extends JFrame {
 		panel2.add(logoutButton);
 		this.add(panel2, BorderLayout.NORTH);
 		logoutButton.setEnabled(false);
-
+		
+		// welcome label
+		welcome.setVisible(false);
+		JPanel panel3 = new JPanel();
+		panel3.add(welcome);
+		this.add(panel3, BorderLayout.SOUTH);
 	}
 
 	private class playAllPlayList implements Runnable {

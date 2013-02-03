@@ -39,17 +39,16 @@ public class Student {
 	public String getName() {
 		return studentName;
 	}
-	
+
 	/**
 	 * Get the song object
+	 * 
 	 * @param nameOfSong
 	 */
-	
-	public void setSong(Song nameOfSong){
+
+	public void setSong(Song nameOfSong) {
 		this.nameOfSong = nameOfSong;
 	}
-
-
 
 	/**
 	 * Increments plays for the day
@@ -59,7 +58,7 @@ public class Student {
 		if (studentCanPlay()) {
 			playsForTheDay++;
 		}
-		
+
 	}
 
 	/**
@@ -75,6 +74,15 @@ public class Student {
 	}
 
 	/**
+	 * Get the total number of plays this student has accumulated today
+	 * 
+	 * @return playsForTheDay
+	 */
+	public int playsForTheDay() {
+		return playsForTheDay;
+	}
+
+	/**
 	 * Subtract the chosen song length from the running total of the current
 	 * time remaining
 	 * 
@@ -87,7 +95,8 @@ public class Student {
 			;
 		} else {
 
-			currentTimeRemaining = currentTimeRemaining - nameOfSong.getLength();
+			currentTimeRemaining = currentTimeRemaining
+					- nameOfSong.getLength();
 		}
 
 	}
@@ -99,11 +108,10 @@ public class Student {
 	 */
 
 	public boolean studentCanPlay() {
-		
-		if(currentTimeRemaining - nameOfSong.getLength() < 0){
+
+		if (currentTimeRemaining - nameOfSong.getLength() < 0) {
 			return false;
 		}
-		
 
 		GregorianCalendar today = new GregorianCalendar();
 
