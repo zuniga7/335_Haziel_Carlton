@@ -158,4 +158,16 @@ public class SongTest {
 		play.run();
 	}
 
+	@Test
+	public void testStudentList() {
+
+		StudentList newList = new StudentList();
+		HashMap<String, Integer> valid = new HashMap<String, Integer>();
+
+		valid = newList.returnTheList();
+
+		assertTrue(valid.containsKey("Ali"));
+
+	}
+
 }

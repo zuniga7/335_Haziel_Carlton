@@ -8,7 +8,7 @@ public class Student {
 	private int songChosenLength;
 	private int currentTimeRemaining;
 	private String studentName = "";
-	private StudentList<String, Integer> theStudents = new StudentList<String, Integer>();
+	private StudentList theStudents = new StudentList();
 	private int playsForTheDay;
 	private Calendar originalDay;
 	private Song nameOfSong;

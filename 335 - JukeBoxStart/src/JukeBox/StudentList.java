@@ -3,9 +3,9 @@ package JukeBox;
 import java.util.HashMap;
 
 //hardcore those into the collection
-public class StudentList<K, V> extends HashMap<String, Integer> {
+public class StudentList {
 
-	private HashMap<String, Integer> students = new HashMap<String,Integer>();
+	private HashMap<String, Integer> students = new HashMap<String, Integer>();
 
 	/**
 	 * Hashmap of current users and their passwords.
@@ -30,6 +30,16 @@ public class StudentList<K, V> extends HashMap<String, Integer> {
 	public boolean wasLoginSuccessful(String name, int password) {
 
 		return password == students.get(name);
+
+	}
+
+	public HashMap<String, Integer> returnTheList() {
+
+		HashMap<String, Integer> copyOfList = new HashMap<String, Integer>();
+
+		copyOfList = students;
+
+		return copyOfList;
 
 	}
 
