@@ -5,7 +5,8 @@ import java.util.HashMap;
 //hardcore those into the collection
 public class StudentList {
 
-	private HashMap<Student, String> students = new HashMap<Student, String>();
+	private HashMap<String, Student> students = new HashMap<String, Student>();
+	Student currentStudent = new Student(null, null);
 
 	/**
 	 * Hashmap of current users and their passwords.
@@ -23,27 +24,26 @@ public class StudentList {
 		// BE THE NAME (STRING).... PLEASE SWITCH THEM AROUND
 		//
 		// change everything as necessary
-		// 
+		//
 		// after that.... implement the method below
 		//
 		// THANK YOU!
-		
-		students.put(student1, "1111");
-		students.put(student2, "2222");
-		students.put(student3, "3333");
-		students.put(student4, "4444");
+
+		students.put("Ali", student1);
+		students.put("Christ", student2);
+		students.put("River", student3);
+		students.put("Ryan", student4);
 
 	}
-	
+
 	/**
-	 * implement this!
+	 * implement this! Like this?
 	 */
-	public Student getStudent(String name){
-		
+	public Student getStudent(String name) {
+
+		return students.get(name);
+
 	}
-	
-	
-	
 
 	/**
 	 * Determines whether the user exists and whether the password matches
@@ -58,15 +58,14 @@ public class StudentList {
 
 	}
 
-
 	/**
 	 * 
 	 * @return
 	 */
 
-	public HashMap<Student, String> returnTheList() {
+	public HashMap<String, Student> returnTheList() {
 
-		HashMap<Student, String> copyOfList = new HashMap<Student, String>();
+		HashMap<String, Student> copyOfList = new HashMap<String, Student>();
 
 		copyOfList = students;
 
