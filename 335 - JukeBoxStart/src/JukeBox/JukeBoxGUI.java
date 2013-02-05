@@ -11,10 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-import songplayer.SongPlayer;
 
 public class JukeBoxGUI extends JFrame {
 
@@ -27,6 +26,7 @@ public class JukeBoxGUI extends JFrame {
 
 	private SongCollection songCollection = new SongCollection();
 	private StudentList studentList = new StudentList();
+	private Student loggedInStudent;
 
 	private JTextField userNameField = new JTextField(10);
 	private JPasswordField passField = new JPasswordField(10);
@@ -79,12 +79,15 @@ public class JukeBoxGUI extends JFrame {
 			// must be logged in to play music
 			if (!loginButton.isEnabled()) {
 
-				// TESTING
+				// add selected song to playList -- TESTING
 				songCollection.addToPlayList(2);
-				songCollection.addToPlayList(3);
 
-				playAllPlayList playingPlayList = new playAllPlayList();
-				new Thread(playingPlayList).start();
+				// if the playList has 1 song... start playing music playlist
+				// else, don't play playList again
+				if (songCollection.getPlayList().size() == 1) {
+					playAllPlayList playingPlayList = new playAllPlayList();
+					new Thread(playingPlayList).start();
+				}
 
 			}
 
@@ -114,7 +117,7 @@ public class JukeBoxGUI extends JFrame {
 				loginButton.setEnabled(false);
 				logoutButton.setEnabled(true);
 
-				Student loggedInStudent = studentList.getStudent(name);
+				loggedInStudent = studentList.getStudent(name);
 
 				welcome.setText(("Welcome " + name + "! - "
 						+ "Minutes Remaining: "
@@ -192,6 +195,10 @@ public class JukeBoxGUI extends JFrame {
 		panel.add(queueList);
 		this.add(panel, BorderLayout.CENTER);
 
+		// set song list and queue on GUI ---- TEMPORARY!!!
+		setUpSongList();
+		setUpPlayList();
+
 		// user/pass
 		JPanel panel2 = new JPanel();
 		panel2.add(userLabel);
@@ -211,6 +218,27 @@ public class JukeBoxGUI extends JFrame {
 		this.add(panel3, BorderLayout.SOUTH);
 	}
 
+	private void setUpPlayList() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * sets up the look for the song list inside the GUI
+	 */
+	private void setUpSongList() {
+
+		String[] columns = { "Song Name", "Song Length" };
+
+		// JTable songsList = new JTable(data, columns);
+
+	}
+
+	/**
+	 * plays all of the songs in the playlist -- playing one song at a time and
+	 * going to the next when that song ends (+ a split second for little more
+	 * room between songs)
+	 */
 	private class playAllPlayList implements Runnable {
 
 		@Override
