@@ -223,6 +223,7 @@ public class SongTest {
 		assertFalse(newList.wasLoginSuccessful("Ryan", "2222"));
 		assertTrue(newList.wasLoginSuccessful("Ryan", "4444"));
 		assertFalse(newList.wasLoginSuccessful("River", "1111"));
+		assertFalse(newList.wasLoginSuccessful(null, null));
 	}
 
 	@Test
@@ -253,6 +254,8 @@ public class SongTest {
 
 		Student student1 = new Student("Ali", "1111");
 		assertFalse("River".equals(student1.getName()));
+		assertTrue("Ali".equals(student1.getName()));
+		assertEquals("1111", student1.getID());
 		assertFalse(1900 * 60 == student1.getAvailableMinutes());
 		assertFalse(4 == student1.getPlaysForTheDay());
 
@@ -276,6 +279,21 @@ public class SongTest {
 	public void testMUSIC() {
 		Play3SongsWithAListener test = new Play3SongsWithAListener();
 		test.test();
+	}
+	
+	@Test
+	public void testStudent4(){
+		
+		Student student1 = new Student("Ali", "1111");
+		Song song2 = new Song("flute", "flute.mp3", 6);
+		student1.setSong(song2);
+		student1.songWasPlayed();
+		assertEquals(1, student1.getPlaysForTheDay());
+		student1.songWasPlayed();
+		assertEquals(2, student1.getPlaysForTheDay());
+		student1.songWasPlayed();
+		assertFalse(student1.studentCanPlay());
+		
 	}
 
 }

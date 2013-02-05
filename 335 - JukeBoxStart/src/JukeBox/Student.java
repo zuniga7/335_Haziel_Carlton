@@ -124,16 +124,17 @@ public class Student {
 
 		isSameDay(today);
 
-		// count from 0 to 4
-		return (playsForTheDay < 5);
+		// count from 0 to 2
+		return (playsForTheDay < 3);
 
 	}
 
 	private boolean isSameDay(GregorianCalendar today) {
 
 		// two days are the same
-		if (originalDay.YEAR == today.YEAR && originalDay.MONTH == today.MONTH
-				&& originalDay.DATE == today.DATE)
+		if (originalDay.get(originalDay.YEAR) == today.get(today.YEAR)
+				&& originalDay.get(originalDay.MONTH) == today.get(today.MONTH)
+				&& originalDay.get(originalDay.DATE) == today.get(today.DATE))
 			return true;
 
 		// it is a brand new day!
@@ -142,6 +143,11 @@ public class Student {
 			playsForTheDay = 0;
 			return false;
 		}
+	}
+	
+	public void pretendItsTomorrow() {
+
+		originalDay.roll(originalDay.DAY_OF_MONTH, 1); // tomorrow
 	}
 
 }
