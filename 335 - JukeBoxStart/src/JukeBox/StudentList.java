@@ -18,17 +18,6 @@ public class StudentList {
 		Student student3 = new Student("River", "3333");
 		Student student4 = new Student("Ryan", "4444");
 
-		// please do this:
-		//
-		// WE NEED TO CHANGE THE VALUE OPTION TO STUDENT!!! AND THE KEY SHOULD
-		// BE THE NAME (STRING).... PLEASE SWITCH THEM AROUND
-		//
-		// change everything as necessary
-		//
-		// after that.... implement the method below
-		//
-		// THANK YOU!
-
 		students.put("Ali", student1);
 		students.put("Chris", student2);
 		students.put("River", student3);
@@ -37,7 +26,7 @@ public class StudentList {
 	}
 
 	/**
-	 * implement this! Like this?
+	 * returns a Student from the collection by giving in their name
 	 */
 	public Student getStudent(String name) {
 

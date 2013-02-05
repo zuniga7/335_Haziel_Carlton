@@ -166,6 +166,8 @@ public class SongTest {
 		
 		Student student1 = newList.getStudent("Ali");
 		
+		assertEquals(student1, newList.getStudent("Ali"));
+		
 		assertTrue("1111".equals(student1.getID()));
 
 	}
