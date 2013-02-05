@@ -42,9 +42,6 @@ public class JukeBoxGUI extends JFrame {
 		JFrame view = new JukeBoxGUI();
 		view.setVisible(true);
 
-		String baseDir = System.getProperty("user.dir");
-		SongPlayer.playFile(baseDir + "/songfiles/" + "SwingCheese.mp3");
-
 	}
 
 	public JukeBoxGUI() {
@@ -79,8 +76,24 @@ public class JukeBoxGUI extends JFrame {
 
 		public void actionPerformed(ActionEvent arg0) {
 
-			playAllPlayList playingPlayList = new playAllPlayList();
-			new Thread(playingPlayList).start();
+			// must be logged in to play music
+			if (!loginButton.isEnabled()) {
+
+				// TESTING
+				songCollection.addToPlayList(2);
+				songCollection.addToPlayList(3);
+
+				playAllPlayList playingPlayList = new playAllPlayList();
+				new Thread(playingPlayList).start();
+
+			}
+
+			// ask user to log in to their account if they arent logged in
+			else {
+				JOptionPane.showMessageDialog(playSongButton,
+						"Must be logged in before attempting to play music",
+						"Please Login", JOptionPane.ERROR_MESSAGE);
+			}
 
 		}
 
@@ -208,7 +221,7 @@ public class JukeBoxGUI extends JFrame {
 
 				try {
 					Thread.sleep(songCollection.getPlayList().peek()
-							.getLength());
+							.getLength() * 1050);
 
 				} catch (InterruptedException e) {
 					e.printStackTrace();

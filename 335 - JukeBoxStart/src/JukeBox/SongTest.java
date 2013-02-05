@@ -1,11 +1,10 @@
 package JukeBox;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -89,11 +88,14 @@ public class SongTest {
 		SongCollection sc = new SongCollection();
 
 		assertEquals(7, sc.getCollectionList().size());
+
+		sc.addToSongList(new Song("Hello World", "hello.mp3", 5));
 	}
 
 	@Test
 	public void testSongPlayListGeneral() {
 		SongCollection sc = new SongCollection();
+		sc.playSongAtTopOfPlayList();
 
 		// add 1st song 1
 		sc.addToPlayList(0);
@@ -103,6 +105,7 @@ public class SongTest {
 		// add 1st song 2
 		sc.addToPlayList(0);
 		System.out.println(sc.getPlayList());
+		sc.playSongAtTopOfPlayList();
 
 		// add 1st song 3
 		sc.addToPlayList(0);
@@ -164,54 +167,54 @@ public class SongTest {
 	public void testStudentList() {
 
 		StudentList newList = new StudentList();
-		
+
 		Student student1 = newList.getStudent("Ali");
-		
+
 		assertEquals(student1, newList.getStudent("Ali"));
-		
+
 		assertTrue("1111".equals(student1.getID()));
 
 	}
-	
+
 	@Test
 	public void testStudentList2() {
 
 		StudentList newList = new StudentList();
-		
+
 		Student student1 = newList.getStudent("River");
-		
+
 		assertTrue("3333".equals(student1.getID()));
 		Student student2 = newList.getStudent("Chris");
-		
+
 		assertTrue("2222".equals(student2.getID()));
 		Student student3 = newList.getStudent("Ryan");
-		
+
 		assertTrue("4444".equals(student3.getID()));
-	
+
 	}
-	
+
 	@Test
 	public void testStudentList3() {
 
 		StudentList newList = new StudentList();
-		
+
 		Student student1 = newList.getStudent("Ali");
 		assertFalse("2222.".equals(student1.getID()));
-		
+
 		Student student2 = newList.getStudent("Chris");
-		
+
 		assertFalse("3333".equals(student2.getID()));
 		Student student3 = newList.getStudent("Ryan");
-		
+
 		assertFalse("1111".equals(student3.getID()));
-		
+
 	}
-	
+
 	@Test
 	public void testStudentListWasLoginSuccessful() {
 
 		StudentList newList = new StudentList();
-		
+
 		assertTrue(newList.wasLoginSuccessful("Ali", "1111"));
 		assertFalse(newList.wasLoginSuccessful("River", "1111"));
 		assertTrue(newList.wasLoginSuccessful("River", "3333"));
@@ -221,48 +224,58 @@ public class SongTest {
 		assertTrue(newList.wasLoginSuccessful("Ryan", "4444"));
 		assertFalse(newList.wasLoginSuccessful("River", "1111"));
 	}
-	
+
 	@Test
 	public void testStudent() {
 
 		Student student1 = new Student("Ali", "1111");
 		assertTrue("Ali".equals(student1.getName()));
-		assertEquals(1500*60, student1.getAvailableMinutes());
+		assertEquals(1500 * 60, student1.getAvailableMinutes());
 		assertEquals(0, student1.getPlaysForTheDay());
 		Student student2 = new Student("Chris", "2222");
 		assertTrue("Chris".equals(student2.getName()));
-		assertEquals(1500*60, student2.getAvailableMinutes());
+		assertEquals(1500 * 60, student2.getAvailableMinutes());
 		assertEquals(0, student2.getPlaysForTheDay());
 		Student student3 = new Student("River", "3333");
 		assertTrue("River".equals(student3.getName()));
-		assertEquals(1500*60, student3.getAvailableMinutes());
+		assertEquals(1500 * 60, student3.getAvailableMinutes());
 		assertEquals(0, student3.getPlaysForTheDay());
 		Student student4 = new Student("Ryan", "4444");
 		assertTrue("Ryan".equals(student4.getName()));
-		assertEquals(1500*60, student4.getAvailableMinutes());
+		assertEquals(1500 * 60, student4.getAvailableMinutes());
 		assertEquals(0, student4.getPlaysForTheDay());
-	
-		
-		
-		
-		
-		
+
 	}
-	//comment
+
+	// comment
 	@Test
 	public void testStudent2() {
 
 		Student student1 = new Student("Ali", "1111");
 		assertFalse("River".equals(student1.getName()));
-		assertFalse(1900*60 == student1.getAvailableMinutes());
+		assertFalse(1900 * 60 == student1.getAvailableMinutes());
 		assertFalse(4 == student1.getPlaysForTheDay());
-	
+
 	}
+
+	@Test
+	public void testStudent3() {
+		SongCollection sc = new SongCollection();
+		StudentList newList = new StudentList();
+
+		Student student = newList.getStudent("Ali");
+		ArrayList<Song> list = new ArrayList<Song>();
+		list = sc.getCollectionList();
+
+		if (list.get(3).canPlaySong())
+			student.setSong(list.get(3));
+
+	}
+
 	@Test
 	public void testMUSIC() {
 		Play3SongsWithAListener test = new Play3SongsWithAListener();
 		test.test();
 	}
-	
 
 }

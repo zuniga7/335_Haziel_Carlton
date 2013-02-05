@@ -51,10 +51,7 @@ public class SongCollection {
 	}
 
 	/**
-	 * 
 	 * gets the ArrayList containing the whole collection of songs
-	 * 
-	 * 
 	 * 
 	 * @return ArrayList songList
 	 */
@@ -64,10 +61,7 @@ public class SongCollection {
 	}
 
 	/**
-	 * 
 	 * gets the Queue containing the whole playList of songs
-	 * 
-	 * 
 	 * 
 	 * @return Queue playList
 	 */
@@ -77,7 +71,6 @@ public class SongCollection {
 	}
 
 	/**
-	 * 
 	 * adds a song object into the song collection (ArrayList songList)
 	 */
 
@@ -86,9 +79,7 @@ public class SongCollection {
 	}
 
 	/**
-	 * 
 	 * adds the selected song object (selected index) into the playlist queue
-	 * 
 	 * (Queue playList)
 	 */
 
@@ -102,7 +93,6 @@ public class SongCollection {
 	}
 
 	public void playSongAtTopOfPlayList() {
-		SongPlayer.playFile("./songfiles/BlueRidgeMountainMist.mp3");
 
 		if (playList.peek() != null) {
 			ObjectWaitingForSongToEnd waiter = new ObjectWaitingForSongToEnd();
