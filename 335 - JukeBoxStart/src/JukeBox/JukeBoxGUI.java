@@ -92,9 +92,8 @@ public class JukeBoxGUI extends JFrame {
 					songCollection.addToPlayList(songTable.getSelectedRow());
 					
 					// refresh tables ---- TESTING
-					songListScrollPane = setUpSongList();
-				//	setUpSongList();
-				//	songTable.fire
+					
+
 
 					// if the playList has 1 song... start playing music
 					// playlist else, don't play playList again
@@ -220,7 +219,7 @@ public class JukeBoxGUI extends JFrame {
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
 		// just list?????
 
-		// playing around
+		// playing around view (Songlist / button / Playlist)
 		JPanel panel = new JPanel();
 	//	 panel.add(songListScrollPane);
 		 panel.add(playSongButton);
@@ -289,7 +288,6 @@ public class JukeBoxGUI extends JFrame {
 		}
 
 		songTable = new JTable(data, columns);
-	//	songTable.setmod
 		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
 		songTable.setFillsViewportHeight(true);
 
