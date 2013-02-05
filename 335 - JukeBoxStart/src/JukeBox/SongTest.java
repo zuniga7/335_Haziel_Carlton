@@ -10,6 +10,7 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import demoSongPlayer.Play1SongNoListener;
+import demoSongPlayer.Play3SongsWithAListener;
 
 public class SongTest {
 
@@ -256,9 +257,11 @@ public class SongTest {
 		assertFalse(1900*60 == student1.getAvailableMinutes());
 		assertFalse(4 == student1.getPlaysForTheDay());
 	
-		
-		
-		
+	}
+	@Test
+	public void testMUSIC() {
+		Play3SongsWithAListener test = new Play3SongsWithAListener();
+		test.test();
 	}
 	
 

@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import songplayer.SongPlayer;
+
 public class JukeBoxGUI extends JFrame {
 
 	private JButton playSongButton = new JButton("Play Song");
@@ -39,6 +41,9 @@ public class JukeBoxGUI extends JFrame {
 	public static void main(String[] args) {
 		JFrame view = new JukeBoxGUI();
 		view.setVisible(true);
+
+		String baseDir = System.getProperty("user.dir");
+		SongPlayer.playFile(baseDir + "/songfiles/" + "SwingCheese.mp3");
 
 	}
 
@@ -144,7 +149,7 @@ public class JukeBoxGUI extends JFrame {
 			welcome.setText("Thank you for using the JukeBox. Please come back again!");
 			userNameField.setText("");
 			passField.setText("");
-			
+
 			logoutButton.setEnabled(false);
 			loginButton.setEnabled(true);
 

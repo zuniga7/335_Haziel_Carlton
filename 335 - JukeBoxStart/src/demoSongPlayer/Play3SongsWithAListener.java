@@ -41,6 +41,11 @@ public class Play3SongsWithAListener {
     SongPlayer.playFile(waiter, baseDir + "SwingCheese.mp3");
 
   }
+  
+  public void test(){
+	    ObjectWaitingForSongToEnd waiter = new ObjectWaitingForSongToEnd();
+	    SongPlayer.playFile(waiter, baseDir + "SwingCheese.mp3");
+  }
 
   /**
    * An inner class that allows an instance of this to receive a
