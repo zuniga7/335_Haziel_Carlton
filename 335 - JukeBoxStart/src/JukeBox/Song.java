@@ -104,8 +104,9 @@ public class Song {
 	private boolean isSameDay(GregorianCalendar today) {
 
 		// two days are the same
-		if (originalDay.YEAR == today.YEAR && originalDay.MONTH == today.MONTH
-				&& originalDay.DATE == today.DATE)
+		if (originalDay.get(originalDay.YEAR) == today.get(today.YEAR)
+				&& originalDay.get(originalDay.MONTH) == today.get(today.MONTH)
+				&& originalDay.get(originalDay.DATE) == today.get(today.DATE))
 			return true;
 
 		// it is a brand new day!
@@ -117,22 +118,11 @@ public class Song {
 	}
 
 	/**
-	 * pretends its tomorrow -- NOT WORKING BUT IDK WHY!!!!
+	 * pretends its tomorrow for testing purposes
 	 */
 	public void pretendItsTomorrow() {
-		System.out.println(GregorianCalendar.DAY_OF_MONTH);
 
-		Calendar tomorrow = new GregorianCalendar(Calendar.YEAR,
-				Calendar.MONTH, Calendar.DATE + 1);
-
-		originalDay.clear();
-
-		System.out.println(originalDay.YEAR);
-		originalDay.roll(GregorianCalendar.DAY_OF_MONTH, 1); // tomorrow
-
-		System.out.println(tomorrow.DAY_OF_MONTH);
-		System.out.println(originalDay.DAY_OF_MONTH);
-
+		originalDay.roll(originalDay.DAY_OF_MONTH, 1); // tomorrow
 	}
 
 }

@@ -111,7 +111,7 @@ public class JukeBoxGUI extends JFrame {
 				JOptionPane
 						.showMessageDialog(
 								loginButton,
-								"The username and password combination you enetered is incorrect",
+								"The username and password combination you entered is incorrect",
 								"Incorrect Login", JOptionPane.ERROR_MESSAGE);
 			}
 		}
