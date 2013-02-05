@@ -19,7 +19,7 @@ public class JukeBoxGUI extends JFrame {
 	private JButton playSongButton = new JButton("Play Song");
 	private JTextArea songList = new JTextArea(25, 32);
 	private JTextArea queueList = new JTextArea(25, 32);
-	private JLabel welcome = new JLabel("Welcome ");
+	private JLabel welcome = new JLabel("Welcome to the JukeBox!");
 	private JButton loginButton = new JButton("Login");
 	private JButton logoutButton = new JButton("Logout");
 
@@ -186,7 +186,7 @@ public class JukeBoxGUI extends JFrame {
 		logoutButton.setEnabled(false);
 
 		// welcome label
-		welcome.setVisible(false);
+		welcome.setVisible(true);
 		welcome.setFont(new Font("Courier", Font.BOLD, 16));
 		JPanel panel3 = new JPanel();
 		panel3.add(welcome);
