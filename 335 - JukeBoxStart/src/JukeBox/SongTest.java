@@ -158,22 +158,13 @@ public class SongTest {
 		play.run();
 	}
 
-//	@Test
-//	public void testStudentList() {
-//
-//		StudentList newList = new StudentList();
-//		HashMap<String, Student> valid = new HashMap<String, Student>();
-//
-//		valid = newList.returnTheList();
-//
-//		assertTrue(valid.containsKey("Ali"));
-//		assertTrue(valid.containsKey("Chris"));
-//		assertTrue(valid.containsKey("River"));
-//		assertTrue(valid.containsKey("Ryan"));
-//		assertFalse(valid.containsKey("Jacob"));
-//		Student password = valid.get("Ali");
-//		assertEquals("1111", valid.get("Ali"));
-//
-//	}
+	@Test
+	public void testStudentList() {
+
+		StudentList newList = new StudentList();
+		
+		assertTrue("1111".equals(newList.getStudent("Ali")));
+
+	}
 
 }
