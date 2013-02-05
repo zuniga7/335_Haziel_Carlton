@@ -1,16 +1,21 @@
 package JukeBox;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -19,13 +24,15 @@ public class JukeBoxGUI extends JFrame {
 
 	private JButton playSongButton = new JButton("Play Song");
 	private JTextArea songList = new JTextArea(25, 32);
-	private JTextArea queueList = new JTextArea(25, 32);
+	private JTable songTable;
+	private JList queueList = new JList();
 	private JLabel welcome = new JLabel("Welcome to the JukeBox!");
 	private JButton loginButton = new JButton("Login");
 	private JButton logoutButton = new JButton("Logout");
 
 	private SongCollection songCollection = new SongCollection();
 	private StudentList studentList = new StudentList();
+	private JScrollPane songListScrollPane = new JScrollPane();
 	private Student loggedInStudent;
 
 	private JTextField userNameField = new JTextField(10);
@@ -79,19 +86,32 @@ public class JukeBoxGUI extends JFrame {
 			// must be logged in to play music
 			if (!loginButton.isEnabled()) {
 
-				// add selected song to playList -- TESTING
-				songCollection.addToPlayList(2);
+				// if the user picked a song
+				if (songTable.getSelectedRow() != -1) {
+					// add selected song to playList
+					songCollection.addToPlayList(songTable.getSelectedRow());
+					
+					// refresh tables ---- TESTING
+					songListScrollPane = setUpSongList();
+				//	setUpSongList();
+				//	songTable.fire
 
-				// if the playList has 1 song... start playing music playlist
-				// else, don't play playList again
-				if (songCollection.getPlayList().size() == 1) {
-					playAllPlayList playingPlayList = new playAllPlayList();
-					new Thread(playingPlayList).start();
+					// if the playList has 1 song... start playing music
+					// playlist else, don't play playList again
+					if (songCollection.getPlayList().size() == 1) {
+						playAllPlayList playingPlayList = new playAllPlayList();
+						new Thread(playingPlayList).start();
+					}
 				}
-
+				// else tell the user to pick a song
+				else {
+					JOptionPane.showMessageDialog(playSongButton,
+							"Please make a selection before playing a song",
+							"Select a Song", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 
-			// ask user to log in to their account if they arent logged in
+			// else ask user to log in to their account if they arent logged in
 			else {
 				JOptionPane.showMessageDialog(playSongButton,
 						"Must be logged in before attempting to play music",
@@ -188,16 +208,25 @@ public class JukeBoxGUI extends JFrame {
 		this.setLocation(100, 100);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		// set song list and queue on GUI ---- TEMPORARY!!!
+		setUpPlayList();
+		songListScrollPane = setUpSongList();
+		
+		this.add(songListScrollPane, BorderLayout.WEST);
+		
+		queueList.setSize(32, 32);
+		this.add(queueList, BorderLayout.EAST);
+
+		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
+		// just list?????
+
 		// playing around
 		JPanel panel = new JPanel();
-		panel.add(songList);
-		panel.add(playSongButton);
-		panel.add(queueList);
-		this.add(panel, BorderLayout.CENTER);
+	//	 panel.add(songListScrollPane);
+		 panel.add(playSongButton);
+	//	 panel.add(queueList);
 
-		// set song list and queue on GUI ---- TEMPORARY!!!
-		setUpSongList();
-		setUpPlayList();
+		this.add(panel, BorderLayout.CENTER); 
 
 		// user/pass
 		JPanel panel2 = new JPanel();
@@ -218,20 +247,57 @@ public class JukeBoxGUI extends JFrame {
 		this.add(panel3, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * sets up the look for the play list inside the GUI ---- TESTING!!!
+	 */
 	private void setUpPlayList() {
-		// TODO Auto-generated method stub
+
+		String[] columns = { "Now Playing" };
+
+		DefaultListModel queue = new DefaultListModel();
+
+		ArrayList<Song> temp = new ArrayList<Song>(songCollection.getPlayList());
+
+		for (int x = 0; x < songCollection.getPlayList().size(); x++) {
+			queue.addElement(temp.get(x));
+			System.out.println(temp.get(x));
+		}
+
+		queueList.setModel(queue);
+		
+		JScrollPane scroll = new JScrollPane();
 
 	}
 
 	/**
 	 * sets up the look for the song list inside the GUI
+	 * 
+	 * @return
 	 */
-	private void setUpSongList() {
+	private JScrollPane setUpSongList() {
 
-		String[] columns = { "Song Name", "Song Length" };
+		String[] columns = { "Song Name", "Song Length", "Number of Plays" };
 
-		// JTable songsList = new JTable(data, columns);
+		int listSize = songCollection.getCollectionList().size();
+		Object[][] data = new Object[listSize][3];
 
+		for (int x = 0; x < listSize; x++) {
+			data[x][0] = songCollection.getCollectionList().get(x).getName();
+			data[x][1] = songCollection.getCollectionList().get(x).getLength();
+			data[x][2] = songCollection.getCollectionList().get(x)
+					.getNumPlays();
+		}
+
+		songTable = new JTable(data, columns);
+	//	songTable.setmod
+		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
+		songTable.setFillsViewportHeight(true);
+
+	//	songListScrollPane.setViewportView(songTable);
+
+		JScrollPane scroll = new JScrollPane(songTable);
+		
+		return scroll;
 	}
 
 	/**
