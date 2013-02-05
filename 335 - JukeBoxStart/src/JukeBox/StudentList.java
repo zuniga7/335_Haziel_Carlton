@@ -61,19 +61,5 @@ public class StudentList {
 
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-
-	public HashMap<String, Student> returnTheList() {
-
-		HashMap<String, Student> copyOfList = new HashMap<String, Student>();
-
-		copyOfList = students;
-
-		return copyOfList;
-
-	}
 
 }
