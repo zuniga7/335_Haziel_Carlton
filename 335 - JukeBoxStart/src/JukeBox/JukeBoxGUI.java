@@ -101,7 +101,7 @@ public class JukeBoxGUI extends JFrame {
 				welcome.setText(("Welcome " + name + "! - "
 						+ "Minutes Remaining: "
 						+ (loggedInStudent.getAvailableMinutes() / 60.0)
-						+ " - Number of Plays Today: " + (3 - loggedInStudent
+						+ " - Number of Plays Left: " + (3 - loggedInStudent
 						.getPlaysForTheDay())));
 				welcome.setVisible(true);
 			}
