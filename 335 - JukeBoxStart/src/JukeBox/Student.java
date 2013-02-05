@@ -39,7 +39,7 @@ public class Student {
 	}
 
 	/**
-	 * Returns the student's name
+	 * Returns the student's ID
 	 * 
 	 * @return
 	 */
