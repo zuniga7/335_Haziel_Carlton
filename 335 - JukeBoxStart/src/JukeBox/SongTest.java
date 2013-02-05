@@ -1,5 +1,6 @@
 package JukeBox;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -166,6 +167,28 @@ public class SongTest {
 		Student student1 = newList.getStudent("Ali");
 		
 		assertTrue("1111".equals(student1.getID()));
+
+	}
+	
+	@Test
+	public void testStudentList2() {
+
+		StudentList newList = new StudentList();
+		
+		Student student1 = newList.getStudent("River");
+		
+		assertTrue("3333".equals(student1.getID()));
+		Student student2 = newList.getStudent("Chris");
+		
+		assertTrue("2222".equals(student2.getID()));
+		Student student3 = newList.getStudent("Ryan");
+		
+		assertTrue("4444".equals(student3.getID()));
+		
+
+		
+		
+		
 
 	}
 
