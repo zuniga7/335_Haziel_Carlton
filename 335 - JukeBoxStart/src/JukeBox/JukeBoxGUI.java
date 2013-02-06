@@ -89,13 +89,17 @@ public class JukeBoxGUI extends JFrame {
 				// if the user picked a song
 				if (songTable.getSelectedRow() != -1) {
 					// add selected song to playList
-					songCollection.addToPlayList(songTable.getSelectedRow());
+					int index = songTable.getSelectedRow();
+					songCollection.addToPlayList(index);
 
 					// refresh tables ---- TESTING
-					songTable.editCellAt(songTable.getSelectedRow(), 3);
+			//		songTable.
+			//		songTable.editCellAt(songTable.getSelectedRow(), 3);
 					setUpPlayList();
 
 					// change user minutes and plays ---- ADD
+				//	Song selection = songCollection
+				//	loggedInStudent.setSong(songTable.getSelectedRow().;
 
 					// if the playList has 1 song... start playing music
 					// playlist else, don't play playList again
@@ -262,11 +266,10 @@ public class JukeBoxGUI extends JFrame {
 
 		for (int x = 0; x < songCollection.getPlayList().size(); x++) {
 			queue.addElement(temp.get(x).getName());
-			System.out.println(temp.get(x).getName());
 		}
-		queue.addElement("hey");
 
 		queueList.setModel(queue);
+		queueList.toString();
 
 		JScrollPane scroll = new JScrollPane();
 
@@ -320,7 +323,7 @@ public class JukeBoxGUI extends JFrame {
 
 				try {
 					Thread.sleep(songCollection.getPlayList().peek()
-							.getLength() * 1050);
+							.getLength() * 1000 + 50);
 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
