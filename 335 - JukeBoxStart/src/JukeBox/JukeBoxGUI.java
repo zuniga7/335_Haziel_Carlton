@@ -90,10 +90,9 @@ public class JukeBoxGUI extends JFrame {
 				if (songTable.getSelectedRow() != -1) {
 					// add selected song to playList
 					songCollection.addToPlayList(songTable.getSelectedRow());
-					
-					// refresh tables ---- TESTING
-					
 
+					// refresh tables ---- TESTING
+					songTable.editCellAt(songTable.getSelectedRow(), 3);
 
 					// if the playList has 1 song... start playing music
 					// playlist else, don't play playList again
@@ -210,9 +209,9 @@ public class JukeBoxGUI extends JFrame {
 		// set song list and queue on GUI ---- TEMPORARY!!!
 		setUpPlayList();
 		songListScrollPane = setUpSongList();
-		
+
 		this.add(songListScrollPane, BorderLayout.WEST);
-		
+
 		queueList.setSize(32, 32);
 		this.add(queueList, BorderLayout.EAST);
 
@@ -221,11 +220,11 @@ public class JukeBoxGUI extends JFrame {
 
 		// playing around view (Songlist / button / Playlist)
 		JPanel panel = new JPanel();
-	//	 panel.add(songListScrollPane);
-		 panel.add(playSongButton);
-	//	 panel.add(queueList);
+		// panel.add(songListScrollPane);
+		panel.add(playSongButton);
+		// panel.add(queueList);
 
-		this.add(panel, BorderLayout.CENTER); 
+		this.add(panel, BorderLayout.CENTER);
 
 		// user/pass
 		JPanel panel2 = new JPanel();
@@ -263,7 +262,7 @@ public class JukeBoxGUI extends JFrame {
 		}
 
 		queueList.setModel(queue);
-		
+
 		JScrollPane scroll = new JScrollPane();
 
 	}
@@ -275,15 +274,17 @@ public class JukeBoxGUI extends JFrame {
 	 */
 	private JScrollPane setUpSongList() {
 
-		String[] columns = { "Song Name", "Song Length", "Number of Plays" };
+		String[] columns = { "Song Name", "Song Length", "Artist",
+				"Number of Plays" };
 
 		int listSize = songCollection.getCollectionList().size();
-		Object[][] data = new Object[listSize][3];
+		Object[][] data = new Object[listSize][4];
 
 		for (int x = 0; x < listSize; x++) {
 			data[x][0] = songCollection.getCollectionList().get(x).getName();
 			data[x][1] = songCollection.getCollectionList().get(x).getLength();
-			data[x][2] = songCollection.getCollectionList().get(x)
+			data[x][2] = songCollection.getCollectionList().get(x).getArtist();
+			data[x][3] = songCollection.getCollectionList().get(x)
 					.getNumPlays();
 		}
 
@@ -291,10 +292,10 @@ public class JukeBoxGUI extends JFrame {
 		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
 		songTable.setFillsViewportHeight(true);
 
-	//	songListScrollPane.setViewportView(songTable);
+		// songListScrollPane.setViewportView(songTable);
 
 		JScrollPane scroll = new JScrollPane(songTable);
-		
+
 		return scroll;
 	}
 

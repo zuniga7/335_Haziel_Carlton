@@ -8,6 +8,7 @@ public class Song {
 	private int numPlays = 0;
 	private int songLength;
 	private String fileLocation;
+	private String artist;
 
 	private Calendar originalDay;
 
@@ -16,10 +17,11 @@ public class Song {
 	 * 
 	 * @param directory
 	 */
-	public Song(String name, String directory, int length) {
+	public Song(String name, String directory, String artist1, int length) {
 		songName = name;
 		songLength = length; // length of song is in seconds
 		fileLocation = "./songfiles/" + directory;
+		artist = artist1;
 
 		originalDay = new GregorianCalendar(); // new calendar
 
@@ -123,6 +125,14 @@ public class Song {
 	public void pretendItsTomorrow() {
 
 		originalDay.roll(originalDay.DAY_OF_MONTH, 1); // tomorrow
+	}
+
+	/**
+	 * returns the artist name for this song
+	 * @return
+	 */
+	public String getArtist() {
+		return artist;
 	}
 
 }

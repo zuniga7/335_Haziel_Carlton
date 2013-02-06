@@ -16,8 +16,8 @@ public class SongTest {
 	@Test
 	public void testGeneralSongs() {
 		// add songs
-		Song song1 = new Song("tada", "tada.mp3", 2);
-		Song song2 = new Song("flute", "flute.mp3", 6);
+		Song song1 = new Song("tada", "tada.mp3", "unknown artist", 2);
+		Song song2 = new Song("flute", "flute.mp3", "unknown artist", 6);
 
 		// names
 		assertEquals(song1.getName(), "tada");
@@ -30,6 +30,10 @@ public class SongTest {
 		// get length
 		assertEquals(song1.getLength(), 2);
 		assertEquals(song2.getLength(), 6);
+		
+		// get artist
+		assertEquals(song1.getArtist(), "unknown artist");
+		assertEquals(song2.getArtist(), "unknown artist");
 
 		// can play song
 		assertTrue(song1.canPlaySong());
@@ -42,7 +46,7 @@ public class SongTest {
 
 	@Test
 	public void testAddDaysToSongs() {
-		Song song1 = new Song("tada", "tada.mp3", 2);
+		Song song1 = new Song("tada", "tada.mp3", "unknown artist", 2);
 		assertEquals(song1.getNumPlays(), 0);
 		assertTrue(song1.canPlaySong());
 
@@ -89,7 +93,7 @@ public class SongTest {
 
 		assertEquals(7, sc.getCollectionList().size());
 
-		sc.addToSongList(new Song("Hello World", "hello.mp3", 5));
+		sc.addToSongList(new Song("Hello World", "hello.mp3", "unknown artist", 5));
 	}
 
 	@Test
@@ -285,7 +289,7 @@ public class SongTest {
 	public void testStudent4(){
 		
 		Student student1 = new Student("Ali", "1111");
-		Song song2 = new Song("flute", "flute.mp3", 6);
+		Song song2 = new Song("flute", "flute.mp3", "unknown artist", 6);
 		student1.setSong(song2);
 		student1.songWasPlayed();
 		assertEquals(1, student1.getPlaysForTheDay());

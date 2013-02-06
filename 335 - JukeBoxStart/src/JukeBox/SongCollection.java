@@ -32,13 +32,17 @@ public class SongCollection {
 
 		// add songs
 		Song song1 = new Song("BlueRidgeMountainMist",
-				"BlueRidgeMountainMist.mp3", 38);
-		Song song2 = new Song("DeterminedTumbao", "DeterminedTumbao.mp3", 20);
-		Song song3 = new Song("flute", "flute.aif", 6);
-		Song song4 = new Song("spacemusic", "spacemusic.au", 1);
-		Song song5 = new Song("SwingCheese", "SwingCheese.mp3", 15);
-		Song song6 = new Song("tada", "tada.wav", 2);
-		Song song7 = new Song("UntameableFire", "UntameableFire.mp3", 283);
+				"BlueRidgeMountainMist.mp3", "unknown artist", 38);
+		Song song2 = new Song("DeterminedTumbao", "DeterminedTumbao.mp3",
+				"Freeplay Music", 20);
+		Song song3 = new Song("flute", "flute.aif", "unknown artist", 6);
+		Song song4 = new Song("spacemusic", "spacemusic.au", "unknown artist",
+				1);
+		Song song5 = new Song("SwingCheese", "SwingCheese.mp3",
+				"Freeplay Music", 15);
+		Song song6 = new Song("tada", "tada.wav", "unknown artist", 2);
+		Song song7 = new Song("UntameableFire", "UntameableFire.mp3",
+				"unknown artist", 283);
 
 		songList.add(song1);
 		songList.add(song2);
