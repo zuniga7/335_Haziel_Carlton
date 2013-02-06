@@ -93,6 +93,9 @@ public class JukeBoxGUI extends JFrame {
 
 					// refresh tables ---- TESTING
 					songTable.editCellAt(songTable.getSelectedRow(), 3);
+					setUpPlayList();
+
+					// change user minutes and plays ---- ADD
 
 					// if the playList has 1 song... start playing music
 					// playlist else, don't play playList again
@@ -212,7 +215,7 @@ public class JukeBoxGUI extends JFrame {
 
 		this.add(songListScrollPane, BorderLayout.WEST);
 
-		queueList.setSize(32, 32);
+		queueList.setSize(300, 300);
 		this.add(queueList, BorderLayout.EAST);
 
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
@@ -255,11 +258,13 @@ public class JukeBoxGUI extends JFrame {
 		DefaultListModel queue = new DefaultListModel();
 
 		ArrayList<Song> temp = new ArrayList<Song>(songCollection.getPlayList());
+		// Object[][] data = new Object[][1];
 
 		for (int x = 0; x < songCollection.getPlayList().size(); x++) {
-			queue.addElement(temp.get(x));
-			System.out.println(temp.get(x));
+			queue.addElement(temp.get(x).getName());
+			System.out.println(temp.get(x).getName());
 		}
+		queue.addElement("hey");
 
 		queueList.setModel(queue);
 
@@ -289,6 +294,7 @@ public class JukeBoxGUI extends JFrame {
 		}
 
 		songTable = new JTable(data, columns);
+		songTable.setAutoCreateRowSorter(true);
 		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
 		songTable.setFillsViewportHeight(true);
 
@@ -319,9 +325,11 @@ public class JukeBoxGUI extends JFrame {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				// when song is over, remove from list
 				songCollection.removeTopSong();
 
-				// update JTextArea .......
+				// update PlayList
+				setUpPlayList();
 
 			}
 

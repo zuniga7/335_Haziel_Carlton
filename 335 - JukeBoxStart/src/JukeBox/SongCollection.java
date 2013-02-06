@@ -37,7 +37,7 @@ public class SongCollection {
 				"Freeplay Music", 20);
 		Song song3 = new Song("flute", "flute.aif", "unknown artist", 6);
 		Song song4 = new Song("spacemusic", "spacemusic.au", "unknown artist",
-				1);
+				10);
 		Song song5 = new Song("SwingCheese", "SwingCheese.mp3",
 				"Freeplay Music", 15);
 		Song song6 = new Song("tada", "tada.wav", "unknown artist", 2);
