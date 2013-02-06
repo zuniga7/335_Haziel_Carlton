@@ -33,6 +33,7 @@ public class JukeBoxGUI extends JFrame {
 	private SongCollection songCollection = new SongCollection();
 	private StudentList studentList = new StudentList();
 	private JScrollPane songListScrollPane = new JScrollPane();
+	private JScrollPane playListScroll = new JScrollPane(queueList);
 	private Student loggedInStudent;
 
 	private JTextField userNameField = new JTextField(10);
@@ -216,11 +217,12 @@ public class JukeBoxGUI extends JFrame {
 		// set song list and queue on GUI ---- TEMPORARY!!!
 		setUpPlayList();
 		songListScrollPane = setUpSongList();
-
+		
 		this.add(songListScrollPane, BorderLayout.WEST);
+		this.add(playListScroll, BorderLayout.EAST);
 
-		queueList.setSize(300, 300);
-		this.add(queueList, BorderLayout.EAST);
+	//	queueList.setSize(300, 300);
+	//	this.add(queueList, BorderLayout.EAST);
 
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
 		// just list?????
@@ -270,8 +272,6 @@ public class JukeBoxGUI extends JFrame {
 
 		queueList.setModel(queue);
 		queueList.toString();
-
-		JScrollPane scroll = new JScrollPane();
 
 	}
 
