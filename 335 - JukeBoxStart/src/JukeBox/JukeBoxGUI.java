@@ -89,24 +89,75 @@ public class JukeBoxGUI extends JFrame {
 
 				// if the user picked a song
 				if (songTable.getSelectedRow() != -1) {
-					// add selected song to playList
-					int index = songTable.getSelectedRow();
-					songCollection.addToPlayList(index);
 
-					// refresh tables ---- TESTING
-			//		songTable.
-			//		songTable.editCellAt(songTable.getSelectedRow(), 3);
-					setUpPlayList();
+					// get the selected song and set it as the selection of the
+					// user
+					int rowIndex = songTable.getSelectedRow();
+					System.out.println(rowIndex);
 
-					// change user minutes and plays ---- ADD
-				//	Song selection = songCollection
-				//	loggedInStudent.setSong(songTable.getSelectedRow().;
+					// get actual song from rowIndex -- ADD -- TESTING
+					int indexOfSong = getActualSong(rowIndex);
+					Song selection = songCollection.getCollectionList().get(
+							indexOfSong);
 
-					// if the playList has 1 song... start playing music
-					// playlist else, don't play playList again
-					if (songCollection.getPlayList().size() == 1) {
-						playAllPlayList playingPlayList = new playAllPlayList();
-						new Thread(playingPlayList).start();
+					loggedInStudent.setSong(selection);
+
+					// check to see if the logged in student can Play the song
+					if (loggedInStudent.studentCanPlay()) {
+
+						// if you can play the current song
+						if (selection.canPlaySong()) {
+							// Subtract the time of song from user
+							loggedInStudent.songWasPlayed();
+							welcome.setText(("Welcome "
+									+ loggedInStudent.getName()
+									+ "! - "
+									+ "Minutes Remaining: "
+									+ (loggedInStudent.getAvailableMinutes() / 60.0)
+									+ " - Number of Plays Left: " + (2 - loggedInStudent
+									.getPlaysForTheDay())));
+
+							// add selected song to playList
+							songCollection.addToPlayList(indexOfSong); // not
+																		// yet
+																		// working!!!
+
+							// refresh tables ---- TESTING
+							// songTable.getModel().setValueAt(aValue, rowIndex,
+							// columnIndex)
+
+							// refresh playList
+							setUpPlayList();
+
+							// change user minutes and plays ---- ADD
+							// Song selection = songCollection
+							// loggedInStudent.setSong(songTable.getSelectedRow().;
+
+							// if the playList has 1 song... start playing music
+							// playlist else, don't play playList again
+							if (songCollection.getPlayList().size() == 1) {
+								playAllPlayList playingPlayList = new playAllPlayList();
+								new Thread(playingPlayList).start();
+							}
+						}
+						// This song is no longer eligible to be played today
+						else {
+							String message = "Sorry, but this song is no longer eligible to be played today. Please try again tomorrow.";
+
+							JOptionPane.showMessageDialog(playSongButton,
+									message, "Unable to play current song",
+									JOptionPane.ERROR_MESSAGE);
+						}
+
+					}
+
+					// The student is not eligible to play any more songs today
+					else {
+						String message = "Sorry, but you are either not able to play any more songs today or you do not have a sufficient amount of time available on your account to play the selected song.";
+
+						JOptionPane.showMessageDialog(playSongButton, message,
+								"Unable to play more songs",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				// else tell the user to pick a song
@@ -124,6 +175,21 @@ public class JukeBoxGUI extends JFrame {
 						"Please Login", JOptionPane.ERROR_MESSAGE);
 			}
 
+		}
+
+		private int getActualSong(int rowIndex) {
+			String songName = (String) songTable.getModel().getValueAt(
+					rowIndex, 0); // get name
+
+			System.out.println(songName);
+
+			for (int x = 0; x < songCollection.getCollectionList().size(); x++) {
+				if (songName.equals(songCollection.getCollectionList().get(x)
+						.getName()))
+					return x;
+
+			}
+			return -1;
 		}
 
 	}
@@ -217,12 +283,10 @@ public class JukeBoxGUI extends JFrame {
 		// set song list and queue on GUI ---- TEMPORARY!!!
 		setUpPlayList();
 		songListScrollPane = setUpSongList();
-		
+
 		this.add(songListScrollPane, BorderLayout.WEST);
 		this.add(playListScroll, BorderLayout.EAST);
-
-	//	queueList.setSize(300, 300);
-	//	this.add(queueList, BorderLayout.EAST);
+		// playListScroll.setSize(500, 500); // -- size not changing
 
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
 		// just list?????
@@ -231,7 +295,7 @@ public class JukeBoxGUI extends JFrame {
 		JPanel panel = new JPanel();
 		// panel.add(songListScrollPane);
 		panel.add(playSongButton);
-		// panel.add(queueList);
+	//	panel.add(playListScroll);
 
 		this.add(panel, BorderLayout.CENTER);
 
@@ -259,7 +323,7 @@ public class JukeBoxGUI extends JFrame {
 	 */
 	private void setUpPlayList() {
 
-		String[] columns = { "Now Playing" };
+		String[] columns = { "Up Next" };
 
 		DefaultListModel queue = new DefaultListModel();
 

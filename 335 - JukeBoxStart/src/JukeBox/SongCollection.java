@@ -37,7 +37,7 @@ public class SongCollection {
 				"Freeplay Music", 20);
 		Song song3 = new Song("flute", "flute.aif", "unknown artist", 6);
 		Song song4 = new Song("spacemusic", "spacemusic.au", "unknown artist",
-				9);
+				7);
 		Song song5 = new Song("SwingCheese", "SwingCheese.mp3",
 				"Freeplay Music", 15);
 		Song song6 = new Song("tada", "tada.wav", "unknown artist", 2);
@@ -86,7 +86,6 @@ public class SongCollection {
 	 * adds the selected song object (selected index) into the playlist queue
 	 * (Queue playList)
 	 */
-
 	public void addToPlayList(int index) {
 		Song selectedSong = songList.get(index);
 
@@ -96,6 +95,9 @@ public class SongCollection {
 		}
 	}
 
+	/**
+	 * tells song player to play only the top song of the playList
+	 */
 	public void playSongAtTopOfPlayList() {
 
 		if (playList.peek() != null) {
@@ -108,7 +110,6 @@ public class SongCollection {
 	 * 
 	 * remove the Song at the head of the playList
 	 */
-
 	public void removeTopSong() {
 		playList.poll();
 

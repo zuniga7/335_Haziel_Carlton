@@ -64,6 +64,7 @@ public class Student {
 	public void songWasPlayed() {
 		if (studentCanPlay()) {
 			playsForTheDay++;
+			subtractTime();
 		}
 
 	}
@@ -124,8 +125,8 @@ public class Student {
 
 		isSameDay(today);
 
-		// count from 0 to 2
-		return (playsForTheDay < 3);
+		// count from 0 to 1
+		return (playsForTheDay < 2);
 
 	}
 
