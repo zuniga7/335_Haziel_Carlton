@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 public class JukeBoxGUI extends JFrame {
 
@@ -40,6 +41,7 @@ public class JukeBoxGUI extends JFrame {
 	private JPasswordField passField = new JPasswordField(10);
 	private JLabel userLabel = new JLabel("UserName:");
 	private JLabel passLabel = new JLabel("Password:");
+	private final JLabel nowPlaying = new JLabel("Playing Next:");
 
 	/**
 	 * 
@@ -272,9 +274,11 @@ public class JukeBoxGUI extends JFrame {
 		setUpPlayList();
 		songListScrollPane = setUpSongList();
 
-		this.add(songListScrollPane, BorderLayout.WEST);
+		getContentPane().add(songListScrollPane, BorderLayout.WEST);
 		playListScroll.setSize(500, 500); // -- size not changing
-		this.add(playListScroll, BorderLayout.EAST);
+		getContentPane().add(playListScroll, BorderLayout.EAST);
+		nowPlaying.setOpaque(true);
+		playListScroll.setColumnHeaderView(nowPlaying);
 
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
 		// just list?????
@@ -283,9 +287,9 @@ public class JukeBoxGUI extends JFrame {
 		JPanel panel = new JPanel();
 		// panel.add(songListScrollPane);
 		panel.add(playSongButton);
-	//	panel.add(playListScroll);
+		// panel.add(playListScroll);
 
-		this.add(panel, BorderLayout.CENTER);
+		getContentPane().add(panel, BorderLayout.CENTER);
 
 		// user/pass
 		JPanel panel2 = new JPanel();
@@ -295,7 +299,7 @@ public class JukeBoxGUI extends JFrame {
 		panel2.add(passField);
 		panel2.add(loginButton);
 		panel2.add(logoutButton);
-		this.add(panel2, BorderLayout.NORTH);
+		getContentPane().add(panel2, BorderLayout.NORTH);
 		logoutButton.setEnabled(false);
 
 		// welcome label
@@ -303,7 +307,7 @@ public class JukeBoxGUI extends JFrame {
 		welcome.setFont(new Font("Courier", Font.BOLD, 17));
 		JPanel panel3 = new JPanel();
 		panel3.add(welcome);
-		this.add(panel3, BorderLayout.SOUTH);
+		getContentPane().add(panel3, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -311,18 +315,18 @@ public class JukeBoxGUI extends JFrame {
 	 */
 	private void setUpPlayList() {
 
-		String[] columns = { "Up Next" };
-
 		DefaultListModel queue = new DefaultListModel();
 
 		ArrayList<Song> temp = new ArrayList<Song>(songCollection.getPlayList());
-		// Object[][] data = new Object[][1];
 
 		for (int x = 0; x < songCollection.getPlayList().size(); x++) {
 			queue.addElement(temp.get(x).getName());
 		}
+		queueList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		queueList.setModel(queue);
+		queueList.setFixedCellWidth(400);
+
 	}
 
 	/**
@@ -347,9 +351,11 @@ public class JukeBoxGUI extends JFrame {
 		}
 
 		songTable = new JTable(data, columns);
+		songTable.setShowGrid(false);
+		songTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		songTable.setFillsViewportHeight(true);
 		songTable.setAutoCreateRowSorter(true);
 		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
-		songTable.setFillsViewportHeight(true);
 
 		// songListScrollPane.setViewportView(songTable);
 
