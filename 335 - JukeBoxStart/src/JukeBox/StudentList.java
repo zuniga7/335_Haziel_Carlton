@@ -1,10 +1,15 @@
 package JukeBox;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-//hardcore those into the collection
-public class StudentList {
+public class StudentList implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3155742663053740950L;
+	
 	private HashMap<String, Student> students = new HashMap<String, Student>();
 	Student currentStudent = new Student(null, null);
 

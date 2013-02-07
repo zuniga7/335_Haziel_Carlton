@@ -1,5 +1,6 @@
 package JukeBox;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.Calendar;
@@ -16,8 +17,12 @@ import songplayer.EndOfSongListener;
 
 import songplayer.SongPlayer;
 
-public class SongCollection {
+public class SongCollection implements Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7286274801084824047L;
 	private ArrayList<Song> songList;
 	private Queue<Song> playList;
 

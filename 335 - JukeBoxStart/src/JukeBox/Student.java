@@ -1,10 +1,15 @@
 package JukeBox;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Student {
+public class Student implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8852680785985926563L;
 	private int songChosenLength;
 	private int currentTimeRemaining;
 	private String studentName = "";
