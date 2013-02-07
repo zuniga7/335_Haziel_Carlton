@@ -172,6 +172,14 @@ public class JukeBoxGUI extends JFrame {
 
 		}
 
+		/**
+		 * Obtains the real song index inside the collection from the selected
+		 * row from the table. --- TESTING
+		 * 
+		 * @param rowIndex
+		 *            - the selected row
+		 * @return the index of the song
+		 */
 		private int getActualSong(int rowIndex) {
 			String songName = (String) songTable.getModel().getValueAt(
 					rowIndex, 0); // get name
@@ -364,6 +372,10 @@ public class JukeBoxGUI extends JFrame {
 		return scroll;
 	}
 
+	/**
+	 * sets up the welcome label which displays the logged in users name, their
+	 * time remaining, and their number of plays left
+	 */
 	private void setUpTimeRemaining() {
 		int hours = loggedInStudent.getAvailableMinutes() / 3600;
 		int minutes = (loggedInStudent.getAvailableMinutes() / 60) % 60;
