@@ -109,13 +109,7 @@ public class JukeBoxGUI extends JFrame {
 						if (selection.canPlaySong()) {
 							// Subtract the time of song from user
 							loggedInStudent.songWasPlayed();
-							welcome.setText(("Welcome "
-									+ loggedInStudent.getName()
-									+ "! - "
-									+ "Minutes Remaining: "
-									+ (loggedInStudent.getAvailableMinutes() / 60.0)
-									+ " - Number of Plays Left: " + (2 - loggedInStudent
-									.getPlaysForTheDay())));
+							setUpTimeRemaining();
 
 							// add selected song to playList
 							songCollection.addToPlayList(indexOfSong); // not
@@ -129,10 +123,6 @@ public class JukeBoxGUI extends JFrame {
 							// refresh playList
 							setUpPlayList();
 
-							// change user minutes and plays ---- ADD
-							// Song selection = songCollection
-							// loggedInStudent.setSong(songTable.getSelectedRow().;
-
 							// if the playList has 1 song... start playing music
 							// playlist else, don't play playList again
 							if (songCollection.getPlayList().size() == 1) {
@@ -142,10 +132,11 @@ public class JukeBoxGUI extends JFrame {
 						}
 						// This song is no longer eligible to be played today
 						else {
-							String message = "Sorry, but this song is no longer eligible to be played today. Please try again tomorrow.";
+							String message = "Sorry, but this song is no longer eligible\n"
+									+ " to be played today. Please try again tomorrow.";
 
 							JOptionPane.showMessageDialog(playSongButton,
-									message, "Unable to play current song",
+									message, "Unable to Play Current Song",
 									JOptionPane.ERROR_MESSAGE);
 						}
 
@@ -153,10 +144,12 @@ public class JukeBoxGUI extends JFrame {
 
 					// The student is not eligible to play any more songs today
 					else {
-						String message = "Sorry, but you are either not able to play any more songs today or you do not have a sufficient amount of time available on your account to play the selected song.";
+						String message = "Sorry, but you are either not able to play any\n"
+								+ "more songs today or you do not have a sufficient amount\n"
+								+ "of time available on your account to play the selected song.";
 
 						JOptionPane.showMessageDialog(playSongButton, message,
-								"Unable to play more songs",
+								"Unable to Play More Songs",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -211,12 +204,7 @@ public class JukeBoxGUI extends JFrame {
 
 				loggedInStudent = studentList.getStudent(name);
 
-				welcome.setText(("Welcome " + name + "! - "
-						+ "Minutes Remaining: "
-						+ (loggedInStudent.getAvailableMinutes() / 60.0)
-						+ " - Number of Plays Left: " + (2 - loggedInStudent
-						.getPlaysForTheDay())));
-				welcome.setVisible(true);
+				setUpTimeRemaining();
 			}
 
 			else {
@@ -285,8 +273,8 @@ public class JukeBoxGUI extends JFrame {
 		songListScrollPane = setUpSongList();
 
 		this.add(songListScrollPane, BorderLayout.WEST);
+		playListScroll.setSize(500, 500); // -- size not changing
 		this.add(playListScroll, BorderLayout.EAST);
-		// playListScroll.setSize(500, 500); // -- size not changing
 
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
 		// just list?????
@@ -312,7 +300,7 @@ public class JukeBoxGUI extends JFrame {
 
 		// welcome label
 		welcome.setVisible(true);
-		welcome.setFont(new Font("Courier", Font.BOLD, 16));
+		welcome.setFont(new Font("Courier", Font.BOLD, 17));
 		JPanel panel3 = new JPanel();
 		panel3.add(welcome);
 		this.add(panel3, BorderLayout.SOUTH);
@@ -335,8 +323,6 @@ public class JukeBoxGUI extends JFrame {
 		}
 
 		queueList.setModel(queue);
-		queueList.toString();
-
 	}
 
 	/**
@@ -370,6 +356,17 @@ public class JukeBoxGUI extends JFrame {
 		JScrollPane scroll = new JScrollPane(songTable);
 
 		return scroll;
+	}
+
+	private void setUpTimeRemaining() {
+		int hours = loggedInStudent.getAvailableMinutes() / 3600;
+		int minutes = (loggedInStudent.getAvailableMinutes() / 60) % 60;
+		int seconds = loggedInStudent.getAvailableMinutes() % 60;
+
+		welcome.setText(("Welcome " + loggedInStudent.getName() + "! - "
+				+ "Time Remaining: " + hours + "Hours " + minutes + "Minutes "
+				+ seconds + "Seconds - Number of Plays Left: " + (2 - loggedInStudent
+				.getPlaysForTheDay())));
 	}
 
 	/**
