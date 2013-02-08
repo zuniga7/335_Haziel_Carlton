@@ -90,7 +90,6 @@ public class JukeBoxGUI extends JFrame {
 	 * setup all the visual components
 	 */
 	public JukeBoxGUI() {
-		songCollection.resetPlays();
 		layoutGUI();
 		registerListeners();
 
@@ -156,8 +155,8 @@ public class JukeBoxGUI extends JFrame {
 																		// working!!!
 
 							// refresh tables ---- TESTING
-							// songTable.getModel().setValueAt(aValue, rowIndex,
-							// columnIndex)
+							songTable.getModel().setValueAt(
+									selection.getNumPlays(), rowIndex, 3);
 
 							// refresh playList
 							setUpPlayList();
@@ -307,13 +306,11 @@ public class JukeBoxGUI extends JFrame {
 
 		@Override
 		public void windowActivated(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void windowClosed(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -333,25 +330,22 @@ public class JukeBoxGUI extends JFrame {
 			}
 			// else they hit cancel
 			else {
-				
+
 			}
 		}
 
 		@Override
 		public void windowDeactivated(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void windowDeiconified(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void windowIconified(WindowEvent arg0) {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -362,9 +356,11 @@ public class JukeBoxGUI extends JFrame {
 					"Enable Serializable?", 0);
 
 			// load the needed resources
-			if (choice == JOptionPane.YES_OPTION)
+			if (choice == JOptionPane.YES_OPTION) {
 				loadData();
-
+				songCollection.resetPlays();
+		//		setUpSongList();
+			}
 		}
 	}
 
