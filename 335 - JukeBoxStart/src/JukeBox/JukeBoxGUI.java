@@ -83,7 +83,7 @@ public class JukeBoxGUI extends JFrame {
 	public static void main(String[] args) {
 		JFrame view = new JukeBoxGUI();
 		view.setVisible(true);
-
+		
 	}
 
 	public JukeBoxGUI() {
