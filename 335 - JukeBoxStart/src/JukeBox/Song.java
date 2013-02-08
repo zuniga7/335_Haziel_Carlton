@@ -1,3 +1,17 @@
+/*=============================================================================
+ |   Assignment:  Program #2 
+ |      Authors:  Carlton Ochoa (cochoa@email.arizona.edu)
+ |				  Haziel Zuniga (zuniga7@email.arizona.edu)
+ |
+ |       Course:  335
+ |   Instructor:  R. Mercer
+ |     Due Date:  Tuesday February 12, 2013 at 3:00
+ |
+ |  Description:  This class is what represents a song object.A song has a name, a 
+ |				  length, an artist, a filelocation, and the number of plays. It also
+ |				  checks if a song can be played on this same day
+ |                
+ *===========================================================================*/
 package JukeBox;
 
 import java.io.Serializable;
@@ -50,6 +64,15 @@ public class Song implements Serializable {
 	public String getName() {
 		return songName;
 
+	}	
+	
+	/**
+	 * returns the artist name for this song
+	 * 
+	 * @return
+	 */
+	public String getArtist() {
+		return artist;
 	}
 
 	/**
@@ -133,12 +156,6 @@ public class Song implements Serializable {
 		originalDay.roll(originalDay.DAY_OF_MONTH, 1); // tomorrow
 	}
 
-	/**
-	 * returns the artist name for this song
-	 * @return
-	 */
-	public String getArtist() {
-		return artist;
-	}
+
 
 }

@@ -1,3 +1,16 @@
+/*=============================================================================
+ |   Assignment:  Program #2 
+ |      Authors:  Carlton Ochoa (cochoa@email.arizona.edu)
+ |				  Haziel Zuniga (zuniga7@email.arizona.edu)
+ |
+ |       Course:  335
+ |   Instructor:  R. Mercer
+ |     Due Date:  Tuesday February 12, 2013 at 3:00
+ |
+ |  Description:  This class is conducts JUnit testing for the Song, Student,
+ |				  Song Collection, and Student List classes.
+ |                
+ *===========================================================================*/
 package JukeBox;
 
 import static org.junit.Assert.assertEquals;

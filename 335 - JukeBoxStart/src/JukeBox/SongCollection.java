@@ -1,3 +1,18 @@
+/*=============================================================================
+ |   Assignment:  Program #2 
+ |      Authors:  Carlton Ochoa (cochoa@email.arizona.edu)
+ |				  Haziel Zuniga (zuniga7@email.arizona.edu)
+ |
+ |       Course:  335
+ |   Instructor:  R. Mercer
+ |     Due Date:  Tuesday February 12, 2013 at 3:00
+ |
+ |  Description:  This class is what represents a collection of song objects. 
+ |				  A song collection takes care of having songs in the song list 
+ |				  as well as in the playlist. It can add songs to the playList,
+ |				  remove the top song, and "play" songs
+ |                
+ *===========================================================================*/
 package JukeBox;
 
 import java.io.Serializable;
@@ -17,7 +32,7 @@ import songplayer.EndOfSongListener;
 
 import songplayer.SongPlayer;
 
-public class SongCollection implements Serializable  {
+public class SongCollection implements Serializable {
 
 	/**
 	 * 
@@ -56,7 +71,7 @@ public class SongCollection implements Serializable  {
 		songList.add(song5);
 		songList.add(song6);
 		songList.add(song7);
-		
+
 	}
 
 	/**

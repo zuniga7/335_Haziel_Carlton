@@ -1,3 +1,15 @@
+/*=============================================================================
+ |   Assignment:  Program #2 
+ |      Authors:  Carlton Ochoa (cochoa@email.arizona.edu)
+ |				  Haziel Zuniga (zuniga7@email.arizona.edu)
+ |
+ |       Course:  335
+ |   Instructor:  R. Mercer
+ |     Due Date:  Tuesday February 12, 2013 at 3:00
+ |
+ |  Description:  This class is what represents a collection of student objects.
+ |                
+ *===========================================================================*/
 package JukeBox;
 
 import java.io.Serializable;

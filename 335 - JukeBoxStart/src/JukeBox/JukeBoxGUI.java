@@ -1,3 +1,19 @@
+/*=============================================================================
+ |   Assignment:  Program #2 
+ |      Authors:  Carlton Ochoa (cochoa@email.arizona.edu)
+ |				  Haziel Zuniga (zuniga7@email.arizona.edu)
+ |
+ |       Course:  335
+ |   Instructor:  R. Mercer
+ |     Due Date:  Tuesday February 12, 2013 at 3:00
+ |
+ |  Description:  This program is the GUI for the jukebox. It takes care of all
+ |				  of the layout and visual aspects of a jukebox, including
+ |				  allowing a user to login, logout, display their information,
+ |				  display song information, the songlist, and playlist
+ |                
+ *===========================================================================*/
+
 package JukeBox;
 
 import java.awt.BorderLayout;
