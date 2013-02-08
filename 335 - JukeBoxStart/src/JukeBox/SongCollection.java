@@ -155,4 +155,15 @@ public class SongCollection implements Serializable {
 		}
 	}
 
+	/**
+	 * resets all of the number of plays for the day for all the songs in the
+	 * collection
+	 */
+	public void resetPlays() {
+		for (int x = 0; x < songList.size(); x++) {
+			songList.get(x).canPlaySong();
+		}
+
+	}
+
 }

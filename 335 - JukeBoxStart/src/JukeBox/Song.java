@@ -156,6 +156,4 @@ public class Song implements Serializable {
 		originalDay.roll(originalDay.DAY_OF_MONTH, 1); // tomorrow
 	}
 
-
-
 }

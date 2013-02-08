@@ -86,11 +86,14 @@ public class JukeBoxGUI extends JFrame {
 		
 	}
 
+	/**
+	 * setup all the visual components
+	 */
 	public JukeBoxGUI() {
-		// setUpStuff---- new JukeBox or every list??
+		songCollection.resetPlays();
 		layoutGUI();
 		registerListeners();
-
+		
 	}
 
 	/**
@@ -247,6 +250,9 @@ public class JukeBoxGUI extends JFrame {
 				logoutButton.setEnabled(true);
 
 				loggedInStudent = studentList.getStudent(name);
+				
+				// resets user info of playability
+				loggedInStudent.studentCanPlay();
 
 				setUpTimeRemaining();
 			}
@@ -327,7 +333,7 @@ public class JukeBoxGUI extends JFrame {
 			}
 			// else they hit cancel
 			else {
-				JOptionPane.showMessageDialog(null, "Canceled");
+				JOptionPane.showMessageDialog(null, "Canceled!");
 			}
 
 		}
