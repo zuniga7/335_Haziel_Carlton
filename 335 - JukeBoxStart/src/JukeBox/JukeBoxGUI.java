@@ -83,7 +83,7 @@ public class JukeBoxGUI extends JFrame {
 	public static void main(String[] args) {
 		JFrame view = new JukeBoxGUI();
 		view.setVisible(true);
-		
+
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class JukeBoxGUI extends JFrame {
 		songCollection.resetPlays();
 		layoutGUI();
 		registerListeners();
-		
+
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class JukeBoxGUI extends JFrame {
 				logoutButton.setEnabled(true);
 
 				loggedInStudent = studentList.getStudent(name);
-				
+
 				// resets user info of playability
 				loggedInStudent.studentCanPlay();
 
@@ -333,9 +333,8 @@ public class JukeBoxGUI extends JFrame {
 			}
 			// else they hit cancel
 			else {
-				JOptionPane.showMessageDialog(null, "Canceled!");
+				
 			}
-
 		}
 
 		@Override
@@ -434,7 +433,7 @@ public class JukeBoxGUI extends JFrame {
 		this.setTitle("JukeBox");
 		this.setSize(925, 550);
 		this.setLocation(100, 100);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		// set song list and queue on GUI ---- TEMPORARY!!!
 		setUpPlayList();
@@ -560,7 +559,7 @@ public class JukeBoxGUI extends JFrame {
 
 				try {
 					Thread.sleep(songCollection.getPlayList().peek()
-							.getLength() * 1000 + 50);
+							.getLength() * 1000 + 100);
 
 				} catch (InterruptedException e) {
 					e.printStackTrace();

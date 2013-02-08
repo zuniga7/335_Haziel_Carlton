@@ -135,14 +135,14 @@ public class Student implements Serializable {
 
 	public boolean studentCanPlay() {
 
-		if (currentTimeRemaining - nameOfSong.getLength() < 0) {
-			return false;
-		}
-
 		GregorianCalendar today = new GregorianCalendar();
 
 		isSameDay(today);
 
+		if (nameOfSong != null
+				&& (currentTimeRemaining - nameOfSong.getLength() < 0)) {
+			return false;
+		}
 		// count from 0 to 1
 		return (playsForTheDay < 2);
 
@@ -163,7 +163,7 @@ public class Student implements Serializable {
 			return false;
 		}
 	}
-	
+
 	public void pretendItsTomorrow() {
 
 		originalDay.roll(originalDay.DAY_OF_MONTH, 1); // tomorrow
