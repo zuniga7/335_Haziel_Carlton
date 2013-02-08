@@ -5,6 +5,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -43,6 +52,13 @@ public class JukeBoxGUI extends JFrame {
 	private JLabel passLabel = new JLabel("Password:");
 	private final JLabel nowPlaying = new JLabel("Playing Next:");
 
+	public static String baseDir = System.getProperty("user.dir")
+			+ File.separator + "serializedObjects" + File.separator;
+	public static final String FILE_NAME_TO_STORE_SONG_COLLECTION = baseDir
+			+ "songCollection.object";
+	public static final String FILE_NAME_TO_STORE_STUDENT_LIST = baseDir
+			+ "studentCollection.object";
+
 	/**
 	 * 
 	 * @param args
@@ -76,6 +92,8 @@ public class JukeBoxGUI extends JFrame {
 		LogoutButtonListener logout = new LogoutButtonListener();
 		logoutButton.addActionListener(logout);
 
+		MyWindowListener window = new MyWindowListener();
+		this.addWindowListener(window);
 	}
 
 	/**
@@ -261,6 +279,124 @@ public class JukeBoxGUI extends JFrame {
 
 		}
 
+	}
+
+	private class MyWindowListener implements WindowListener {
+
+		@Override
+		public void windowActivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void windowClosed(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void windowClosing(WindowEvent arg0) {
+			int choice = JOptionPane.showConfirmDialog(null,
+					"Do you wish to save?", "Save", 1);
+
+			// if the user wants to save
+			if (choice == JOptionPane.YES_OPTION) {
+				saveData();
+				System.exit(0);
+			}
+			// else if the user doesnt want to save
+			else if (choice == JOptionPane.NO_OPTION) {
+				System.exit(0);
+			}
+			// else they hit cancel
+			else {
+				JOptionPane.showMessageDialog(null, "Canceled");
+			}
+
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void windowIconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void windowOpened(WindowEvent arg0) {
+			int choice = JOptionPane.showConfirmDialog(null,
+					"Do you want to enable Serializability",
+					"Enable Serializable?", 0);
+
+			// load the needed resources
+			if (choice == JOptionPane.YES_OPTION)
+				loadData();
+
+		}
+	}
+
+	/**
+	 * save the songCollection and StudentList into files
+	 */
+	private void saveData() {
+		try {
+			// save song collection
+			FileOutputStream file = new FileOutputStream(
+					FILE_NAME_TO_STORE_SONG_COLLECTION);
+			ObjectOutputStream outputStream = new ObjectOutputStream(file);
+			outputStream.writeObject(songCollection);
+			outputStream.close();
+
+			// save student list
+			file = new FileOutputStream(FILE_NAME_TO_STORE_STUDENT_LIST);
+			outputStream = new ObjectOutputStream(file);
+			outputStream.writeObject(studentList);
+			outputStream.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * load the songCollection and StudentList from files
+	 */
+	private void loadData() {
+		// load song collection
+		try {
+			FileInputStream file = new FileInputStream(
+					FILE_NAME_TO_STORE_SONG_COLLECTION);
+			ObjectInputStream inputStream = new ObjectInputStream(file);
+			songCollection = (SongCollection) inputStream.readObject();
+			inputStream.close();
+
+			// load student list
+			file = new FileInputStream(FILE_NAME_TO_STORE_STUDENT_LIST);
+			inputStream = new ObjectInputStream(file);
+			studentList = (StudentList) inputStream.readObject();
+
+			inputStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
