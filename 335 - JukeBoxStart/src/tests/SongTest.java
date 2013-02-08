@@ -11,7 +11,7 @@
  |				  Song Collection, and Student List classes.
  |                
  *===========================================================================*/
-package JukeBox;
+package tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,6 +20,11 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import org.junit.Test;
+
+import JukeBox.Song;
+import JukeBox.SongCollection;
+import JukeBox.Student;
+import JukeBox.StudentList;
 
 import demoSongPlayer.Play1SongNoListener;
 import demoSongPlayer.Play3SongsWithAListener;
