@@ -14,7 +14,7 @@
  |                
  *===========================================================================*/
 
-package JukeBox;
+package jukeBoxGUI;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -48,6 +48,12 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+
+import JukeBox.Song;
+import JukeBox.SongCollection;
+import JukeBox.Student;
+import JukeBox.StudentList;
+import JukeBox.TableOfSongs;
 
 public class JukeBoxGUI extends JFrame {
 
@@ -134,7 +140,6 @@ public class JukeBoxGUI extends JFrame {
 					// get the selected song and set it as the selection of the
 					// user
 					int rowIndex = songTable.getSelectedRow();
-					System.out.println(rowIndex);
 
 					// get actual song from rowIndex -- ADD -- TESTING
 					int indexOfSong = getActualSong(rowIndex);
@@ -157,9 +162,8 @@ public class JukeBoxGUI extends JFrame {
 
 							// refresh playList & songList
 							setUpPlayList();
-							refreshSongList();
-							songTable.getModel().setValueAt(
-									selection.getNumPlays(), rowIndex, 3);
+					//		refreshSongList();
+
 
 							// if the playList has 1 song... start playing music
 							// playlist else, don't play playList again
@@ -411,7 +415,6 @@ public class JukeBoxGUI extends JFrame {
 		// set song list and queue on GUI ---- TEMPORARY!!!
 		setUpPlayList();
 		setUpSongList();
-		// songListScrollPane =
 
 	
 		nowPlaying.setOpaque(true);
@@ -422,14 +425,13 @@ public class JukeBoxGUI extends JFrame {
 
 		// playing around view (Songlist / button / Playlist)
 		JPanel panel = new JPanel();
-		panel.add(songListScrollPane);
+	//	panel.add(songListScrollPane);
 		panel.add(playSongButton);
-		panel.add(playListScroll);
+	//	panel.add(playListScroll);
 
 		add(panel, BorderLayout.CENTER);	
 		add(songListScrollPane, BorderLayout.WEST);
 		add(playListScroll, BorderLayout.EAST);
-	//	add(songListScrollPane, BorderLayout.WEST);
 
 		// user/pass
 		JPanel panel2 = new JPanel();
@@ -439,7 +441,7 @@ public class JukeBoxGUI extends JFrame {
 		panel2.add(passField);
 		panel2.add(loginButton);
 		panel2.add(logoutButton);
-		getContentPane().add(panel2, BorderLayout.NORTH);
+		add(panel2, BorderLayout.NORTH);
 		logoutButton.setEnabled(false);
 
 		// welcome label
@@ -447,7 +449,7 @@ public class JukeBoxGUI extends JFrame {
 		welcome.setFont(new Font("Courier", Font.BOLD, 17));
 		JPanel panel3 = new JPanel();
 		panel3.add(welcome);
-		getContentPane().add(panel3, BorderLayout.SOUTH);
+		add(panel3, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -465,7 +467,7 @@ public class JukeBoxGUI extends JFrame {
 		queueList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		queueList.setModel(queue);
-		queueList.setFixedCellWidth(400);
+		queueList.setFixedCellWidth(300);
 
 	}
 
