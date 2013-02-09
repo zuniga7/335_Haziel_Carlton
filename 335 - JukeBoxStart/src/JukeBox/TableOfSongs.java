@@ -1,34 +1,33 @@
 package JukeBox;
 
 import java.util.ArrayList;
- 
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 public class TableOfSongs implements TableModel {
-	
+
 	private SongCollection list = new SongCollection();
 	private ArrayList<Song> copy = new ArrayList<Song>();
 
 	@Override
 	public void addTableModelListener(TableModelListener arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public TableOfSongs() {
 		copy = list.getCollectionList();
 	}
 
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
-		
-		if(columnIndex == 0 || columnIndex == 2)
+
+		if (columnIndex == 0 || columnIndex == 2)
 			return String.class;
-		else if(columnIndex == 1 || columnIndex == 3)
+		else if (columnIndex == 1 || columnIndex == 3)
 			return Integer.class;
-				
+
 		else {
 			return String.class;
 		}
@@ -42,14 +41,12 @@ public class TableOfSongs implements TableModel {
 
 	@Override
 	public String getColumnName(int columnIndex) {
-		
 
-
-		if(columnIndex == 0)
+		if (columnIndex == 0)
 			return "Song Name";
-		else if(columnIndex == 1)
+		else if (columnIndex == 1)
 			return "Song Length";
-		else if(columnIndex == 2)
+		else if (columnIndex == 2)
 			return "Artist";
 		else
 			return "Number of Plays";
@@ -59,22 +56,22 @@ public class TableOfSongs implements TableModel {
 	@Override
 	public int getRowCount() {
 		return copy.size();
-		
+
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		
+
 		Song temp = copy.get(rowIndex);
-		if(columnIndex == 0)
+		if (columnIndex == 0)
 			return temp.getName();
-		else if(columnIndex == 1)
+		else if (columnIndex == 1)
 			return temp.getLength();
-		else if(columnIndex == 2)
+		else if (columnIndex == 2)
 			return temp.getArtist();
 		else
 			return temp.getNumPlays();
-		
+
 	}
 
 	@Override
@@ -86,16 +83,13 @@ public class TableOfSongs implements TableModel {
 	@Override
 	public void removeTableModelListener(TableModelListener arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void setValueAt(Object arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
+	public void setValueAt(Object obj, int rowIndex, int columnIndex) {
+		copy.get(rowIndex);
+		copy.set(columnIndex, (Song) obj);
 	}
-	
-	
-	
 
 }

@@ -336,7 +336,7 @@ public class JukeBoxGUI extends JFrame {
 			if (choice == JOptionPane.YES_OPTION) {
 				loadData();
 				songCollection.resetPlays();
-				// setUpSongList();
+				refreshSongList();
 			}
 		}
 	}
@@ -413,8 +413,7 @@ public class JukeBoxGUI extends JFrame {
 		setUpSongList();
 		// songListScrollPane =
 
-		add(songListScrollPane, BorderLayout.WEST);
-		add(playListScroll, BorderLayout.EAST);
+	
 		nowPlaying.setOpaque(true);
 		playListScroll.setColumnHeaderView(nowPlaying);
 
@@ -423,12 +422,14 @@ public class JukeBoxGUI extends JFrame {
 
 		// playing around view (Songlist / button / Playlist)
 		JPanel panel = new JPanel();
-		// panel.add(songListScrollPane);
+		panel.add(songListScrollPane);
 		panel.add(playSongButton);
-		// panel.add(playListScroll);
+		panel.add(playListScroll);
 
-		add(panel, BorderLayout.CENTER);
+		add(panel, BorderLayout.CENTER);	
 		add(songListScrollPane, BorderLayout.WEST);
+		add(playListScroll, BorderLayout.EAST);
+	//	add(songListScrollPane, BorderLayout.WEST);
 
 		// user/pass
 		JPanel panel2 = new JPanel();
@@ -506,8 +507,6 @@ public class JukeBoxGUI extends JFrame {
 	private int getActualSong(int rowIndex) {
 		String songName = (String) songTable.getValueAt(rowIndex, 0); // get real
 																		// name
-
-		System.out.println(songName);
 
 		for (int x = 0; x < songCollection.getCollectionList().size(); x++) {
 			if (songName.equals(songCollection.getCollectionList().get(x)
