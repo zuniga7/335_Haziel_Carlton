@@ -88,8 +88,10 @@ public class TableOfSongs implements TableModel {
 
 	@Override
 	public void setValueAt(Object obj, int rowIndex, int columnIndex) {
+		
 		copy.get(rowIndex);
 		copy.set(columnIndex, (Song) obj);
+		fireTableCellUpdated(rowIndex, columnIndex);
 	}
 
 }
