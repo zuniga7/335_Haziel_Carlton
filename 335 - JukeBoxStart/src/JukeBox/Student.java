@@ -23,7 +23,6 @@ public class Student implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8852680785985926563L;
-	private int songChosenLength;
 	private int currentTimeRemaining;
 	private String studentName = "";
 	private int playsForTheDay;
@@ -117,7 +116,7 @@ public class Student implements Serializable {
 
 	public void subtractTime() {
 
-		if (currentTimeRemaining - songChosenLength < 0) {
+		if (currentTimeRemaining - nameOfSong.getLength() < 0) {
 			;
 		} else {
 

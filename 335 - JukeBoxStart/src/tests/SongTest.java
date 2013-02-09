@@ -317,5 +317,55 @@ public class SongTest {
 		assertFalse(student1.studentCanPlay());
 		
 	}
+	
+	@Test
+	public void testPretendItsTomorrowStudent() {
+		
+		Student student1 = new Student("Ali", "1111");
+		Song song2 = new Song("flute", "flute.mp3", "unknown artist", 6);
+		student1.setSong(song2);
+		student1.songWasPlayed();
+		assertEquals(1, student1.getPlaysForTheDay());
+		student1.songWasPlayed();
+		assertEquals(2, student1.getPlaysForTheDay());
+		student1.songWasPlayed();
+		assertFalse(student1.studentCanPlay());
+		
+		student1.pretendItsTomorrow();
+		assertTrue(student1.studentCanPlay());
+		assertEquals(0, student1.getPlaysForTheDay());
+		
+		
+		
+		
+	}
+	
+	@Test
+	public void testNoMoreFreeMusic() {
+		
+		Student student1 = new Student("Ali", "1111");
+		Song song7 = new Song("UntameableFire", "UntameableFire.mp3",
+				"unknown artist", 9999*60);
+		student1.setSong(song7);
+		student1.subtractTime();
+		assertFalse(student1.studentCanPlay());
+		
+	}
+		
+	@Test
+	public void testNullSong() {
+		
+		Student student1 = new Student("Ali", "1111");
+		student1.setSong(null);
+		
+		assertTrue(student1.studentCanPlay());
+		
+		
+		
+	}
+	
+	
+	
+	
 
 }
