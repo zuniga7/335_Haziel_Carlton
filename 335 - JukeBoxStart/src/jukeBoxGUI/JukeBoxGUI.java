@@ -58,7 +58,7 @@ import JukeBox.TableOfSongs;
 
 public class JukeBoxGUI extends JFrame {
 
-	private JButton playSongButton = new JButton(">>\nPlay Song\n>>");
+	private JButton playSongButton = new JButton();
 	private JTextArea songList = new JTextArea(25, 32);
 	private JTable songTable;
 	private JList queueList = new JList();
@@ -93,7 +93,6 @@ public class JukeBoxGUI extends JFrame {
 	public static void main(String[] args) {
 		JFrame view = new JukeBoxGUI();
 		view.setVisible(true);
-
 	}
 
 	/**
@@ -112,8 +111,7 @@ public class JukeBoxGUI extends JFrame {
 
 	private void registerListeners() {
 		PlayButtonListener play = new PlayButtonListener();
-		playSongButton.setIcon(new ImageIcon(JukeBoxGUI.class.getResource("/qt3logo.jpg")));
-		playSongButton.setLocation(6, 34);
+
 		playSongButton.addActionListener(play);
 
 		LoginButtonListener login = new LoginButtonListener();
@@ -424,9 +422,14 @@ public class JukeBoxGUI extends JFrame {
 
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
 		// just list?????
-
+		playSongButton.setIcon(new ImageIcon(baseDir+"logo.png"));
+		playSongButton.setLocation(6, 34);
 		// playing around view (Songlist / button / Playlist)
-		playSongButton.setSize(155, 139);
+		playSongButton.setSize(155, 155);
+		playSongButton.setLayout(new BorderLayout());
+		JLabel playLabel = new JLabel("  Play Song ");
+		playLabel.setFont(new Font("Courier", Font.BOLD, 18));
+		playSongButton.add(playLabel, BorderLayout.SOUTH);
 		JPanel panel = new JPanel();
 	//	panel.add(songListScrollPane);
 		panel.add(playSongButton);
