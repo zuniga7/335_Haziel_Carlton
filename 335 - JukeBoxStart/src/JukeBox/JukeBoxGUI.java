@@ -31,6 +31,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.RowSorter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -497,30 +500,42 @@ public class JukeBoxGUI extends JFrame {
 	 */
 	private JScrollPane setUpSongList() {
 
-		String[] columns = { "Song Name", "Song Length", "Artist",
-				"Number of Plays" };
+//		String[] columns = { "Song Name", "Song Length", "Artist",
+//				"Number of Plays" };
+//
+//		int listSize = songCollection.getCollectionList().size();
+//		Object[][] data = new Object[listSize][4];
+//
+//		for (int x = 0; x < listSize; x++) {
+//			data[x][0] = songCollection.getCollectionList().get(x).getName();
+//			data[x][1] = songCollection.getCollectionList().get(x).getLength();
+//			data[x][2] = songCollection.getCollectionList().get(x).getArtist();
+//			data[x][3] = songCollection.getCollectionList().get(x)
+//					.getNumPlays();
+//		}
+		
+		TableModel model = new TableOfSongs();
+		JTable table = new JTable(model);
+		
+		
+		
 
-		int listSize = songCollection.getCollectionList().size();
-		Object[][] data = new Object[listSize][4];
-
-		for (int x = 0; x < listSize; x++) {
-			data[x][0] = songCollection.getCollectionList().get(x).getName();
-			data[x][1] = songCollection.getCollectionList().get(x).getLength();
-			data[x][2] = songCollection.getCollectionList().get(x).getArtist();
-			data[x][3] = songCollection.getCollectionList().get(x)
-					.getNumPlays();
-		}
-
-		songTable = new JTable(data, columns);
-		songTable.setShowGrid(false);
-		songTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		songTable.setFillsViewportHeight(true);
-		songTable.setAutoCreateRowSorter(true);
-		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
+//		songTable = new JTable(data, columns);
+//		songTable.setShowGrid(false);
+//		songTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		songTable.setFillsViewportHeight(true);
+//		songTable.setAutoCreateRowSorter(true);
+//		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
 
 		// songListScrollPane.setViewportView(songTable);
 
-		JScrollPane scroll = new JScrollPane(songTable);
+		JScrollPane scroll = new JScrollPane(table);
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+		table.setRowSorter(sorter);
+		setLayout(null);
+		scroll.setSize(660, 240);
+		scroll.setLocation(10,10);
+		add(scroll);
 
 		return scroll;
 	}
