@@ -91,7 +91,6 @@ public class TableOfSongs implements TableModel {
 		
 		copy.get(rowIndex);
 		copy.set(columnIndex, (Song) obj);
-		fireTableCellUpdated(rowIndex, columnIndex);
 	}
 
 }

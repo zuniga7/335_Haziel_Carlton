@@ -121,8 +121,7 @@ public class SongCollection implements Serializable {
 	public void playSongAtTopOfPlayList() {
 
 		if (playList.peek() != null) {
-			ObjectWaitingForSongToEnd waiter = new ObjectWaitingForSongToEnd();
-			SongPlayer.playFile(waiter, playList.peek().getSongDirectory());
+			SongPlayer.playFile(playList.peek().getSongDirectory());
 		}
 	}
 
@@ -132,35 +131,6 @@ public class SongCollection implements Serializable {
 	 */
 	public void removeTopSong() {
 		playList.poll();
-
-	}
-
-	/**
-	 * 
-	 * An inner class that allows an instance of this to receive a
-	 * songFinishedPlaying when the audio file has been played. Note: static was
-	 * added here because it is called from main.
-	 */
-
-	private class ObjectWaitingForSongToEnd implements EndOfSongListener {
-
-		public void songFinishedPlaying(EndOfSongEvent eosEvent) {
-			System.out.print("Finished " + eosEvent.fileName());
-			GregorianCalendar finishedAt = eosEvent.finishedTime();
-			System.out.println(" at " + finishedAt.get(Calendar.HOUR_OF_DAY)
-					+ ":" + finishedAt.get(Calendar.MINUTE) + ":"
-					+ finishedAt.get(Calendar.SECOND));
-		}
-	}
-
-	/**
-	 * resets all of the number of plays for the day for all the songs in the
-	 * collection
-	 */
-	public void resetPlays() {
-		for (int x = 0; x < songList.size(); x++) {
-			songList.get(x).canPlaySong();
-		}
 
 	}
 

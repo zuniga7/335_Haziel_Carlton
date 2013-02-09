@@ -163,8 +163,7 @@ public class JukeBoxGUI extends JFrame {
 
 							// refresh playList & songList
 							setUpPlayList();
-							refreshSongList();
-
+							// refreshSongList();
 
 							// if the playList has 1 song... start playing music
 							// playlist else, don't play playList again
@@ -340,8 +339,7 @@ public class JukeBoxGUI extends JFrame {
 			// load the needed resources
 			if (choice == JOptionPane.YES_OPTION) {
 				loadData();
-				songCollection.resetPlays();
-				refreshSongList();
+				// refreshSongList();
 			}
 		}
 	}
@@ -416,13 +414,13 @@ public class JukeBoxGUI extends JFrame {
 		// set song list and queue on GUI ---- TEMPORARY!!!
 		setUpPlayList();
 		setUpSongList();
-	
+
 		nowPlaying.setOpaque(true);
 		playListScroll.setColumnHeaderView(nowPlaying);
 
 		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
 		// just list?????
-		playSongButton.setIcon(new ImageIcon(baseDir+"logo.png"));
+		playSongButton.setIcon(new ImageIcon(baseDir + "logo.png"));
 		playSongButton.setLocation(6, 34);
 		// playing around view (Songlist / button / Playlist)
 		playSongButton.setSize(155, 155);
@@ -431,14 +429,13 @@ public class JukeBoxGUI extends JFrame {
 		playLabel.setFont(new Font("Courier", Font.BOLD, 18));
 		playSongButton.add(playLabel, BorderLayout.SOUTH);
 		JPanel panel = new JPanel();
-	//	panel.add(songListScrollPane);
+		// panel.add(songListScrollPane);
 		panel.add(playSongButton);
-	//	panel.add(playListScroll);
-		
+		// panel.add(playListScroll);
 
 		panel.setLayout(null);
-		
-		getContentPane().add(panel, BorderLayout.CENTER);	
+
+		getContentPane().add(panel, BorderLayout.CENTER);
 		getContentPane().add(songListScrollPane, BorderLayout.WEST);
 		getContentPane().add(playListScroll, BorderLayout.EAST);
 
@@ -490,6 +487,8 @@ public class JukeBoxGUI extends JFrame {
 		TableModel model = new TableOfSongs();
 		songTable = new JTable(model);
 
+		songTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 		songListScrollPane = new JScrollPane(songTable);
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
 		songTable.setRowSorter(sorter);
@@ -500,25 +499,30 @@ public class JukeBoxGUI extends JFrame {
 	 * the songList
 	 */
 	private void refreshSongList() {
-		for(int x=0; x<songCollection.getCollectionList().size(); x++){
+		// go through the whole collection and refresh the number of plays on the table
+		for (int x = 0; x < songCollection.getCollectionList().size(); x++) {
 			int realIndex = getActualSong(x);
-			int realNumPlays = songCollection.getCollectionList().get(realIndex).getNumPlays();
+			int realNumPlays = songCollection.getCollectionList()
+					.get(realIndex).getNumPlays();
 			songTable.setValueAt(realNumPlays, x, 3);
 		}
 	}
-	
+
 	/**
-	 * Obtains the real song index inside the collection from the selected
-	 * row from the table.
+	 * Obtains the real song index inside the collection from the selected row
+	 * from the table.
 	 * 
 	 * @param rowIndex
 	 *            - the selected row
 	 * @return the index of the song
 	 */
 	private int getActualSong(int rowIndex) {
-		String songName = (String) songTable.getValueAt(rowIndex, 0); // get real
+		String songName = (String) songTable.getValueAt(rowIndex, 0); // get
+																		// real
 																		// name
 
+		// go through all of the song collection looking for the song with the
+		// real song name
 		for (int x = 0; x < songCollection.getCollectionList().size(); x++) {
 			if (songName.equals(songCollection.getCollectionList().get(x)
 					.getName()))
@@ -533,10 +537,12 @@ public class JukeBoxGUI extends JFrame {
 	 * time remaining, and their number of plays left
 	 */
 	private void setUpTimeRemaining() {
+		// get hours, minutes, and seconds left
 		int hours = loggedInStudent.getAvailableMinutes() / 3600;
 		int minutes = (loggedInStudent.getAvailableMinutes() / 60) % 60;
 		int seconds = loggedInStudent.getAvailableMinutes() % 60;
 
+		// set welcome text
 		welcome.setText(("Welcome " + loggedInStudent.getName() + "! - "
 				+ "Time Remaining: " + hours + "Hours " + minutes + "Minutes "
 				+ seconds + "Seconds - Number of Plays Left: " + (2 - loggedInStudent
@@ -553,9 +559,11 @@ public class JukeBoxGUI extends JFrame {
 		@Override
 		public void run() {
 
+			// while there are songs on the playlist
 			while (songCollection.getPlayList().peek() != null) {
 				songCollection.playSongAtTopOfPlayList();
 
+				// wait for the song to end to continue this thread
 				try {
 					Thread.sleep(songCollection.getPlayList().peek()
 							.getLength() * 1000 + 100);

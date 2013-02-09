@@ -180,12 +180,6 @@ public class SongTest {
 	}
 
 	@Test
-	public void test() {
-		Play1SongNoListener play = new Play1SongNoListener();
-		play.run();
-	}
-
-	@Test
 	public void testStudentList() {
 
 		StudentList newList = new StudentList();
@@ -299,8 +293,11 @@ public class SongTest {
 
 	@Test
 	public void testMUSIC() {
-		Play3SongsWithAListener test = new Play3SongsWithAListener();
-		test.test();
+		SongCollection sc = new SongCollection();
+		sc.playSongAtTopOfPlayList();
+		
+		sc.addToPlayList(0);
+		sc.playSongAtTopOfPlayList();
 	}
 	
 	@Test
