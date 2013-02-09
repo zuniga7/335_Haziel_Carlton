@@ -411,17 +411,18 @@ public class JukeBoxGUI extends JFrame {
 		this.setLocation(100, 100);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-		// set song list and queue on GUI ---- TEMPORARY!!!
+		// set song list and queue on GUI
 		setUpPlayList();
 		setUpSongList();
 
+		// now playing label
 		nowPlaying.setOpaque(true);
 		playListScroll.setColumnHeaderView(nowPlaying);
 
-		// JScrollPane playListScrollPane = setUpPlayList(); // maybe table or
-		// just list?????
+		// play button --- icon, null layout, position
 		playSongButton.setIcon(new ImageIcon(baseDir + "logo.png"));
 		playSongButton.setLocation(6, 34);
+		
 		// playing around view (Songlist / button / Playlist)
 		playSongButton.setSize(155, 155);
 		playSongButton.setLayout(new BorderLayout());
@@ -429,12 +430,11 @@ public class JukeBoxGUI extends JFrame {
 		playLabel.setFont(new Font("Courier", Font.BOLD, 18));
 		playSongButton.add(playLabel, BorderLayout.SOUTH);
 		JPanel panel = new JPanel();
-		// panel.add(songListScrollPane);
 		panel.add(playSongButton);
-		// panel.add(playListScroll);
 
 		panel.setLayout(null);
 
+		// add elements with border layout
 		getContentPane().add(panel, BorderLayout.CENTER);
 		getContentPane().add(songListScrollPane, BorderLayout.WEST);
 		getContentPane().add(playListScroll, BorderLayout.EAST);
@@ -459,7 +459,7 @@ public class JukeBoxGUI extends JFrame {
 	}
 
 	/**
-	 * sets up the look for the play list inside the GUI ---- TESTING!!!
+	 * sets up the look for the play list inside the GUI, using a JList
 	 */
 	private void setUpPlayList() {
 
@@ -470,6 +470,8 @@ public class JukeBoxGUI extends JFrame {
 		for (int x = 0; x < songCollection.getPlayList().size(); x++) {
 			queue.addElement(temp.get(x).getName());
 		}
+		
+		// make 1 selection at a time
 		queueList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		queueList.setModel(queue);
@@ -478,7 +480,7 @@ public class JukeBoxGUI extends JFrame {
 	}
 
 	/**
-	 * sets up the look for the song list inside the GUI
+	 * sets up the look for the song list inside the GUI, using JTable
 	 * 
 	 * @return
 	 */
@@ -487,6 +489,7 @@ public class JukeBoxGUI extends JFrame {
 		TableModel model = new TableOfSongs();
 		songTable = new JTable(model);
 
+		// make 1 selection at a time
 		songTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		songListScrollPane = new JScrollPane(songTable);
@@ -517,9 +520,9 @@ public class JukeBoxGUI extends JFrame {
 	 * @return the index of the song
 	 */
 	private int getActualSong(int rowIndex) {
-		String songName = (String) songTable.getValueAt(rowIndex, 0); // get
-																		// real
-																		// name
+		
+		// get real name
+		String songName = (String) songTable.getValueAt(rowIndex, 0); 
 
 		// go through all of the song collection looking for the song with the
 		// real song name
@@ -529,6 +532,7 @@ public class JukeBoxGUI extends JFrame {
 				return x;
 
 		}
+		// this will never happen -- unless the song selected is not on the collection lol
 		return -1;
 	}
 
