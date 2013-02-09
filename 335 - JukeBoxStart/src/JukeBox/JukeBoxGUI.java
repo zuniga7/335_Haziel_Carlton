@@ -153,16 +153,13 @@ public class JukeBoxGUI extends JFrame {
 							setUpTimeRemaining();
 
 							// add selected song to playList
-							songCollection.addToPlayList(indexOfSong); // not
-																		// yet
-																		// working!!!
+							songCollection.addToPlayList(indexOfSong);
 
-							// refresh tables ---- TESTING
+							// refresh playList & songList
+							setUpPlayList();
+							refreshSongList();
 							songTable.getModel().setValueAt(
 									selection.getNumPlays(), rowIndex, 3);
-
-							// refresh playList
-							setUpPlayList();
 
 							// if the playList has 1 song... start playing music
 							// playlist else, don't play playList again
@@ -209,29 +206,6 @@ public class JukeBoxGUI extends JFrame {
 						"Please Login", JOptionPane.ERROR_MESSAGE);
 			}
 
-		}
-
-		/**
-		 * Obtains the real song index inside the collection from the selected
-		 * row from the table. --- TESTING
-		 * 
-		 * @param rowIndex
-		 *            - the selected row
-		 * @return the index of the song
-		 */
-		private int getActualSong(int rowIndex) {
-			String songName = (String) songTable.getModel().getValueAt(
-					rowIndex, 0); // get name
-
-			System.out.println(songName);
-
-			for (int x = 0; x < songCollection.getCollectionList().size(); x++) {
-				if (songName.equals(songCollection.getCollectionList().get(x)
-						.getName()))
-					return x;
-
-			}
-			return -1;
 		}
 
 	}
@@ -362,7 +336,7 @@ public class JukeBoxGUI extends JFrame {
 			if (choice == JOptionPane.YES_OPTION) {
 				loadData();
 				songCollection.resetPlays();
-		//		setUpSongList();
+				// setUpSongList();
 			}
 		}
 	}
@@ -436,11 +410,11 @@ public class JukeBoxGUI extends JFrame {
 
 		// set song list and queue on GUI ---- TEMPORARY!!!
 		setUpPlayList();
-		songListScrollPane = setUpSongList();
+		setUpSongList();
+		// songListScrollPane =
 
-		getContentPane().add(songListScrollPane, BorderLayout.WEST);
-		playListScroll.setSize(500, 500); // -- size not changing
-		getContentPane().add(playListScroll, BorderLayout.EAST);
+		add(songListScrollPane, BorderLayout.WEST);
+		add(playListScroll, BorderLayout.EAST);
 		nowPlaying.setOpaque(true);
 		playListScroll.setColumnHeaderView(nowPlaying);
 
@@ -453,7 +427,8 @@ public class JukeBoxGUI extends JFrame {
 		panel.add(playSongButton);
 		// panel.add(playListScroll);
 
-		getContentPane().add(panel, BorderLayout.CENTER);
+		add(panel, BorderLayout.CENTER);
+		add(songListScrollPane, BorderLayout.WEST);
 
 		// user/pass
 		JPanel panel2 = new JPanel();
@@ -498,46 +473,49 @@ public class JukeBoxGUI extends JFrame {
 	 * 
 	 * @return
 	 */
-	private JScrollPane setUpSongList() {
+	private void setUpSongList() {
 
-//		String[] columns = { "Song Name", "Song Length", "Artist",
-//				"Number of Plays" };
-//
-//		int listSize = songCollection.getCollectionList().size();
-//		Object[][] data = new Object[listSize][4];
-//
-//		for (int x = 0; x < listSize; x++) {
-//			data[x][0] = songCollection.getCollectionList().get(x).getName();
-//			data[x][1] = songCollection.getCollectionList().get(x).getLength();
-//			data[x][2] = songCollection.getCollectionList().get(x).getArtist();
-//			data[x][3] = songCollection.getCollectionList().get(x)
-//					.getNumPlays();
-//		}
-		
 		TableModel model = new TableOfSongs();
-		JTable table = new JTable(model);
-		
-		
-		
+		songTable = new JTable(model);
 
-//		songTable = new JTable(data, columns);
-//		songTable.setShowGrid(false);
-//		songTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		songTable.setFillsViewportHeight(true);
-//		songTable.setAutoCreateRowSorter(true);
-//		songTable.setPreferredScrollableViewportSize(new Dimension(400, 400));
-
-		// songListScrollPane.setViewportView(songTable);
-
-		JScrollPane scroll = new JScrollPane(table);
+		songListScrollPane = new JScrollPane(songTable);
 		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
-		table.setRowSorter(sorter);
-		setLayout(null);
-		scroll.setSize(660, 240);
-		scroll.setLocation(10,10);
-		add(scroll);
+		songTable.setRowSorter(sorter);
+	}
 
-		return scroll;
+	/**
+	 * refreshes all of the number of plays for the whole collection of songs in
+	 * the songList
+	 */
+	private void refreshSongList() {
+		for(int x=0; x<songCollection.getCollectionList().size(); x++){
+			int realIndex = getActualSong(x);
+			int realNumPlays = songCollection.getCollectionList().get(realIndex).getNumPlays();
+			songTable.setValueAt(realNumPlays, x, 3);
+		}
+	}
+	
+	/**
+	 * Obtains the real song index inside the collection from the selected
+	 * row from the table.
+	 * 
+	 * @param rowIndex
+	 *            - the selected row
+	 * @return the index of the song
+	 */
+	private int getActualSong(int rowIndex) {
+		String songName = (String) songTable.getValueAt(rowIndex, 0); // get real
+																		// name
+
+		System.out.println(songName);
+
+		for (int x = 0; x < songCollection.getCollectionList().size(); x++) {
+			if (songName.equals(songCollection.getCollectionList().get(x)
+					.getName()))
+				return x;
+
+		}
+		return -1;
 	}
 
 	/**

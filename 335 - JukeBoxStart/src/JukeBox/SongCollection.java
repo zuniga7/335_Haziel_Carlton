@@ -135,8 +135,6 @@ public class SongCollection implements Serializable {
 
 	}
 
-	// reset all numPlays for a new day??
-
 	/**
 	 * 
 	 * An inner class that allows an instance of this to receive a
