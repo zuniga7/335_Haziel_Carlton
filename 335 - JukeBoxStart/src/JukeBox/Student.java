@@ -1,8 +1,10 @@
 /*=============================================================================
  |   Assignment:  Program #2 
+
  |      Authors:  Carlton Ochoa (cochoa@email.arizona.edu)
  |				  Haziel Zuniga (zuniga7@email.arizona.edu)
  |
+ |		 Grader: Rohit
  |       Course:  335
  |   Instructor:  R. Mercer
  |     Due Date:  Tuesday February 12, 2013 at 3:00
