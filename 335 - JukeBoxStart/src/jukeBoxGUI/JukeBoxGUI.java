@@ -340,6 +340,11 @@ public class JukeBoxGUI extends JFrame {
 			if (choice == JOptionPane.YES_OPTION) {
 				loadData();
 				// refreshSongList();
+				
+				// refresh playlist and play all songs in playList
+				setUpPlayList();
+				playAllPlayList playingPlayList = new playAllPlayList();
+				new Thread(playingPlayList).start();
 			}
 		}
 	}
