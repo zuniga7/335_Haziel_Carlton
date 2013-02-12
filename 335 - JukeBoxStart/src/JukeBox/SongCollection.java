@@ -54,17 +54,17 @@ public class SongCollection implements Serializable {
 
 		// add songs
 		Song song1 = new Song("BlueRidgeMountainMist",
-				"BlueRidgeMountainMist.mp3", "unknown artist", 38);
+				"BlueRidgeMountainMist.mp3", "Ralph Schuckett", 38);
 		Song song2 = new Song("DeterminedTumbao", "DeterminedTumbao.mp3",
 				"Freeplay Music", 20);
-		Song song3 = new Song("flute", "flute.aif", "unknown artist", 6);
-		Song song4 = new Song("spacemusic", "spacemusic.au", "unknown artist",
+		Song song3 = new Song("flute", "flute.aif", "Sun Microsystems", 6);
+		Song song4 = new Song("spacemusic", "spacemusic.au", "Unknown Artist",
 				7);
 		Song song5 = new Song("SwingCheese", "SwingCheese.mp3",
 				"Freeplay Music", 15);
-		Song song6 = new Song("tada", "tada.wav", "unknown artist", 2);
+		Song song6 = new Song("tada", "tada.wav", "Microsoft", 2);
 		Song song7 = new Song("UntameableFire", "UntameableFire.mp3",
-				"unknown artist", 283);
+				"Pierre Langer", 283);
 
 		songList.add(song1);
 		songList.add(song2);
