@@ -59,7 +59,6 @@ import JukeBox.TableOfSongs;
 public class JukeBoxGUI extends JFrame {
 
 	private JButton playSongButton = new JButton();
-	private JTextArea songList = new JTextArea(25, 32);
 	private JTable songTable;
 	private JList queueList = new JList();
 	private JLabel welcome = new JLabel("Welcome to the JukeBox!");
